@@ -1,24 +1,24 @@
 <template>
   <div>
     <h2 class="h2-style">
-      <span class="subrayado-rojo">Stud</span>ents
+      <span class="subrayado-rojo">Teac</span>hers
     </h2>
     <p class="p-style">
-      Home<span style="color: red;">> Student Admit Form</span>
+      Home <span style="color: red;">> Add Teacher</span>
     </p>
     <v-container>
-      <v-card class="pa-4" height="1050">
+      <v-card class="pa-4" height="840">
         <v-form>
           <h3 class="h3-style">
-            Add New Students
+            Add New Teacher
           </h3>
           <v-row>
             <v-col
               cols="3"
             >
-              <p>Name *</p><p>
+              <p>First Name *</p><p>
                 <v-text-field
-                  v-model="nameStudent"
+                  v-model="firstNameTeacher"
                   color="red"
                   background-color="#E8EAF6"
                   type="name"
@@ -30,9 +30,21 @@
             <v-col
               cols="3"
             >
+              <p>Last Name *</p>
+              <v-text-field
+                v-model="lastNameTeacher"
+                color="red"
+                background-color="#E8EAF6"
+                filled
+                :rules="notEmpty"
+              />
+            </v-col>
+            <v-col
+              cols="3"
+            >
               <p>Gender *</p>
               <v-select
-                v-model="GenderStudent"
+                v-model="GenderTeacher"
                 :items="itemsGender"
                 color="red"
                 background-color="#E8EAF6"
@@ -44,23 +56,9 @@
             <v-col
               cols="3"
             >
-              <p>Class *</p>
-              <v-select
-                v-model="ClassStudent"
-                :items="itemsClass"
-                color="red"
-                background-color="#E8EAF6"
-                filled
-                label="Please Select Class"
-                :rules="notEmpty"
-              />
-            </v-col>
-            <v-col
-              cols="3"
-            >
               <p>Date of Birth *</p>
               <v-text-field
-                v-model="birthStudent"
+                v-model="birthTeacher"
                 color="red"
                 background-color="#E8EAF6"
                 filled
@@ -76,7 +74,7 @@
             >
               <p>Blood Group *</p>
               <v-text-field
-                v-model="bloodGroupStudent"
+                v-model="bloodGroupTeacher"
                 color="red"
                 background-color="#E8EAF6"
                 filled
@@ -88,7 +86,7 @@
             >
               <p>Religion *</p>
               <v-select
-                v-model="religionStudent"
+                v-model="religionTeacher"
                 :items="itemsReligion"
                 color="red"
                 background-color="#E8EAF6"
@@ -100,54 +98,9 @@
             <v-col
               cols="3"
             >
-              <p>Admission Date *</p>
-              <v-text-field
-                v-model="admissionStudent"
-                color="red"
-                background-color="#E8EAF6"
-                filled
-                label="dd/mm/yy"
-                append-icon="mdi-calendar"
-                :rules="admissionRules"
-              />
-            </v-col>
-          </v-row>
-          <h3 class="new-parentsStyle">
-            Add New Parents
-          </h3>
-          <v-row>
-            <v-col
-              cols="3"
-            >
-              <p>Father's Name</p>
-              <v-text-field
-                v-model="fatherName"
-                color="red"
-                background-color="#E8EAF6"
-                type="name"
-                filled
-                :rules="notEmpty"
-              />
-            </v-col>
-            <v-col
-              cols="3"
-            >
-              <p>Mother's Name</p>
-              <v-text-field
-                v-model="motherName"
-                color="red"
-                background-color="#E8EAF6"
-                type="name"
-                filled
-                :rules="notEmpty"
-              />
-            </v-col>
-            <v-col
-              cols="3"
-            >
               <p>Email</p>
               <v-text-field
-                v-model="emailParents"
+                v-model="emailTeacher"
                 color="red"
                 background-color="#E8EAF6"
                 type="email"
@@ -160,7 +113,7 @@
             >
               <p>Phone</p>
               <v-text-field
-                v-model="phoneParents"
+                v-model="phoneTeacher"
                 color="red"
                 background-color="#E8EAF6"
                 type="phone"
@@ -168,16 +121,19 @@
                 :rules="phone"
               />
             </v-col>
+          </v-row>
+          <v-row>
             <v-col
               cols="3"
             >
-              <p>Father's Ocupation</p>
-              <v-text-field
-                v-model="fatherOcupation"
+              <p>Class *</p>
+              <v-select
+                v-model="ClassTeacher"
+                :items="itemsClass"
                 color="red"
                 background-color="#E8EAF6"
-                type="name"
                 filled
+                label="Please Select Class"
                 :rules="notEmpty"
               />
             </v-col>
@@ -186,7 +142,7 @@
             >
               <p>Adress *</p>
               <v-text-field
-                v-model="adressParents"
+                v-model="adressTeacher"
                 color="red"
                 background-color="#E8EAF6"
                 filled
@@ -196,15 +152,15 @@
             <v-col
               cols="3"
             >
-              <p>Religion *</p>
-              <v-select
-                v-model="religionParents"
-                :items="itemsReligion"
+              <p>Admission Date *</p>
+              <v-text-field
+                v-model="admissionTeacher"
                 color="red"
                 background-color="#E8EAF6"
                 filled
-                label="Please Select Religion"
-                :rules="notEmpty"
+                label="dd/mm/yy"
+                append-icon="mdi-calendar"
+                :rules="admissionRules"
               />
             </v-col>
           </v-row>
@@ -212,12 +168,12 @@
             <div class="image-upload-container">
               <v-col cols="auto">
                 <div
-                  :class="['image-circle', { 'has-image': imagePreviewStudent }]"
-                  :style="{ backgroundImage: imagePreviewStudent ? `url(${imagePreviewStudent})` : '' }"
+                  :class="['image-circle', { 'has-image': imagePreviewTeacher }]"
+                  :style="{ backgroundImage: imagePreviewTeacher ? `url(${imagePreviewTeacher})` : '' }"
                 />
               </v-col>
               <v-col>
-                <p>Upload Student Photo (150px X 150px)</p>
+                <p>Upload Teacher Photo (150px X 150px)</p>
                 <v-btn
                   class="choose-button"
                   outlined
@@ -264,21 +220,18 @@
 export default {
   data () {
     return {
-      nameStudent: null,
-      birthStudent: null,
-      GenderStudent: null,
-      ClassStudent: null,
-      bloodGroupStudent: null,
-      religionStudent: null,
-      admissionStudent: null,
-      fatherName: null,
-      motherName: null,
-      emailParents: null,
-      phoneParents: null,
-      fatherOcupation: null,
-      adressParents: null,
-      religionParents: null,
-      imagePreviewStudent: null,
+      firstNameTeacher: null,
+      lastNameTeacher: null,
+      GenderTeacher: null,
+      birthTeacher: null,
+      bloodGroupTeacher: null,
+      religionTeacher: null,
+      emailTeacher: null,
+      phoneTeacher: null,
+      ClassTeacher: null,
+      adressTeacher: null,
+      admissionTeacher: null,
+      imagePreviewTeacher: null,
       notEmpty: [
         v => !!v || 'The field could not be empty'
       ],
@@ -314,7 +267,7 @@ export default {
       if (file) {
         const reader = new FileReader()
         reader.onload = (e) => {
-          this.imagePreviewStudent = e.target.result
+          this.imagePreview = e.target.result
         }
         reader.readAsDataURL(file)
       }
@@ -378,7 +331,7 @@ p {
 }
 
 .h3-style {
-  padding-top: 30px;
+  padding-top: 20px;
   padding-bottom: 20px;
   font-size: 30px;
 }
