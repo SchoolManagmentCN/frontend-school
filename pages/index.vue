@@ -1,11 +1,14 @@
 <template>
-  <v-row justify="center" align="center">
-    <p>Hola a todos, ctm bien duro Edgar</p>
-  </v-row>
+  <div>
+    <AddStudent />
+  </div>
 </template>
 
 <script>
+import AddStudent from '~/components/ui/AddStudent.vue'
 export default {
-  name: 'IndexPage'
+  components: {
+    AddStudent
+  }
 }
 </script>
