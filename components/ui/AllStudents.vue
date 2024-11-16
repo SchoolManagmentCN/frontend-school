@@ -89,7 +89,9 @@ export default {
   },
   methods: {
     filterStudents () {
-      // Puedes agregar más lógica aquí si es necesario.
+    },
+    goToDetails (studentId) {
+      this.$router.push({ path: `/studentDetail/${studentId}` })
     }
   }
 }
