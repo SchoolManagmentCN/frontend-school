@@ -1,116 +1,67 @@
 <template>
   <v-navigation-drawer
-    v-model="drawer"
+    style="background-color: #311B92;"
     app
-    color="blue"
-    dark
+    permanent
+    left
   >
-    <v-list dense nav>
-      <v-list-item link>
-        <v-list-item link>
-          <v-icon @click="toggleExpanded('dashboard')">
-            mdi-view-dashboard
-          </v-icon>
-          <v-list-item-title v-show="expandedItems.dashboard">
-            Logo
-          </v-list-item-title>
-        </v-list-item>
-      </v-list-item>
+    <v-list-item style="background-color: red;">
+      <v-icon>
+        mdi-close
+      </v-icon>
+    </v-list-item>
 
-      <v-list-item link>
-        <v-list-item link>
-          <v-icon @click="toggleExpanded('dashboard')">
-            mdi-view-dashboard
-          </v-icon>
-          <v-list-item-title v-show="expandedItems.dashboard">
-            Dashboard
-          </v-list-item-title>
-        </v-list-item>
-      </v-list-item>
-
-      <v-list-item link>
-        <v-list-item link>
-          <v-icon @click="toggleExpanded('dashboard')">
-            mdi-view-dashboard
-          </v-icon>
-          <v-list-item-title v-show="expandedItems.dashboard">
-            Students
-          </v-list-item-title>
-        </v-list-item>
-      </v-list-item>
-
-      <v-list-item link>
-        <v-list-item link>
-          <v-icon @click="toggleExpanded('dashboard')">
-            mdi-view-dashboard
-          </v-icon>
-          <v-list-item-title v-show="expandedItems.dashboard">
-            Parents
-          </v-list-item-title>
-        </v-list-item>
-      </v-list-item>
-
-      <v-list-item link>
-        <v-list-item link>
-          <v-icon @click="toggleExpanded('dashboard')">
-            mdi-view-dashboard
-          </v-icon>
-          <v-list-item-title v-show="expandedItems.dashboard">
-            Teachers
-          </v-list-item-title>
-        </v-list-item>
-      </v-list-item>
-
-      <v-list-item link>
-        <v-list-item link>
-          <v-icon @click="toggleExpanded('dashboard')">
-            mdi-view-dashboard
-          </v-icon>
-          <v-list-item-title v-show="expandedItems.dashboard">
-            Account
-          </v-list-item-title>
-        </v-list-item>
-      </v-list-item>
-
-      <v-list-item link>
-        <v-list-item link>
-          <v-icon @click="toggleExpanded('dashboard')">
-            mdi-view-dashboard
-          </v-icon>
-          <v-list-item-title v-show="expandedItems.dashboard">
-            Subject
-          </v-list-item-title>
-        </v-list-item>
-      </v-list-item>
-
-      <v-list-item link>
-        <v-list-item link>
-          <v-icon @click="toggleExpanded('dashboard')">
-            mdi-view-dashboard
-          </v-icon>
-          <v-list-item-title v-show="expandedItems.dashboard">
-            Settings
-          </v-list-item-title>
-        </v-list-item>
-      </v-list-item>
-    </v-list>
+    <v-list-item style="background-color: #311B92; color: white;" link title="DashBoard">
+      <v-icon style="color: white;">
+        mdi-view-dashboard
+      </v-icon>
+      <p>Dashboard</p>
+    </v-list-item>
+    <v-list-item style="background-color: #311B92; color: white;" link title="Students">
+      <v-icon style="color: white;">
+        mdi-account-school
+      </v-icon>
+      <p>Students</p>
+    </v-list-item>
+    <v-list-item style="background-color: #311B92; color: white;" link title="Parents">
+      <v-icon style="color: white;">
+        mdi-account-multiple
+      </v-icon>
+      <p>Parents</p>
+    </v-list-item>
+    <v-list-item style="background-color: #311B92; color: white;" link title="Teachers">
+      <v-icon style="color: white;">
+        mdi-human-male-board
+      </v-icon>
+      <p>Teachers</p>
+    </v-list-item>
+    <v-list-item style="background-color: #311B92; color: white;" link title="Account">
+      <v-icon style="color: white;">
+        mdi-laptop
+      </v-icon>
+      <p>Account</p>
+    </v-list-item>
+    <v-list-item style="background-color: #311B92; color: white;" link title="Subject">
+      <v-icon style="color: white;">
+        mdi-book-open-blank-variant-outline
+      </v-icon>
+      <p>Subject</p>
+    </v-list-item>
+    <v-list-item style="background-color: #311B92; color: white;" link title="Settings">
+      <v-icon style="color: white;">
+        mdi-cog
+      </v-icon>
+      <p>Settings</p>
+    </v-list-item>
   </v-navigation-drawer>
 </template>
 
 <script>
 export default {
   data () {
-    return {
-      expandedItems: {
-        dashboard: false
-        // ...
-      }
-    }
-  },
-  methods: {
-    toggleExpanded (item) {
-      this.expandedItems[item] = !this.expandedItems[item]
-    }
   }
 }
 </script>
+
+<style>
+</style>
