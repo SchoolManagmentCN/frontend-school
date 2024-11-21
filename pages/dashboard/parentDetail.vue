@@ -1,13 +1,13 @@
 <template>
-  <StudentDetails :student-id="selectedStudentId" />
+  <ParentsDetails :student-id="selectedStudentId" />
 </template>
 
 <script>
-import StudentDetails from '~/components/ui/StudentDetails.vue'
+import ParentsDetails from '~/components/ui/ParentsDetails.vue'
 
 export default {
   components: {
-    StudentDetails
+    ParentsDetails
   },
   data () {
     return {
