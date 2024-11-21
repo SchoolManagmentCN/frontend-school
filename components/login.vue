@@ -6,7 +6,7 @@
           <h1>WELCOME</h1>
         </v-col>
         <v-col cols="6" style="background-color: #311B92;" class="right">
-          <v-card class="Form" style="background-color: white;">
+          <v-card class="Form" style="background-color: white; border-radius: 20px;">
             <v-card-text>
               <v-form>
                 <v-text-field

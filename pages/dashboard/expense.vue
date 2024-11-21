@@ -2,23 +2,24 @@
   <div>
     <navegation />
     <!-- <toolbar /> -->
-    <Admindashboard />
+    <Expense />
   </div>
 </template>
 
 <script>
+import Expense from '~/components/expense.vue'
 import navegation from '~/layouts/navegation.vue'
-import Admindashboard from '~/components/admindashboard.vue'
+
 // import toolbar from '~/layouts/toolbar.vue'
 export default {
   components: {
     navegation,
-    Admindashboard
+    Expense
     // toolbar
   }
 }
 </script>
 
-<style>
+  <style>
 
-</style>
+  </style>
