@@ -8,7 +8,7 @@
 
 <script>
 import navegation from '~/layouts/navegation.vue'
-import Admindashboard from '~/components/admindashboard.vue'
+import Admindashboard from '~/components/ui/admindashboard.vue'
 // import toolbar from '~/layouts/toolbar.vue'
 export default {
   components: {

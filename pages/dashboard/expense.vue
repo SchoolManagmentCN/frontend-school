@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import Expense from '~/components/expense.vue'
+import Expense from '~/components/ui/expense.vue'
 import navegation from '~/layouts/navegation.vue'
 
 // import toolbar from '~/layouts/toolbar.vue'

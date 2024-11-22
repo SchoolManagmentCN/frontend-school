@@ -8,7 +8,7 @@
 
 <script>
 import navegation from '~/layouts/navegation.vue'
-import Studentfees from '~/components/studentfees.vue'
+import Studentfees from '~/components/ui/studentfees.vue'
 // import toolbar from '~/layouts/toolbar.vue'
 export default {
   components: {

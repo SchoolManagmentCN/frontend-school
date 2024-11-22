@@ -3,7 +3,10 @@
     <v-container fluid>
       <v-row style="height: 100vh;">
         <v-col cols="6" class="left">
-          <h1>WELCOME</h1>
+          <img src="../assets/img/logoUG.png" alt="">
+          <h1 style="color: white;">
+            WELCOME
+          </h1>
         </v-col>
         <v-col cols="6" style="background-color: #311B92;" class="right">
           <v-card class="Form" style="background-color: white; border-radius: 20px;">
@@ -39,6 +42,9 @@
               </v-form>
             </v-card-text>
           </v-card>
+          <p style="color: white;">
+            © 2021 Firm Foundation School Management
+          </p>
         </v-col>
       </v-row>
     </v-container>
