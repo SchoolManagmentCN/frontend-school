@@ -1,12 +1,12 @@
 <template>
   <v-navigation-drawer
     v-model="drawer"
-    style="background-color: #311B92;"
+    style="background-color: #14238A;"
     app
     :mini-variant.sync="mini"
   >
     <template #prepend>
-      <v-list-item style="background-color: red;">
+      <v-list-item style="background-color: #D60A0B;">
         <v-btn icon @click="mini = !mini">
           <v-icon>{{ mini ? 'mdi-chevron-right' : 'mdi-chevron-left' }}</v-icon>
         </v-btn>
@@ -15,49 +15,49 @@
 
     <v-list>
       <v-list-item-group>
-        <v-list-item style="background-color: #311B92; color: white;" link title="DashBoard">
+        <v-list-item style="background-color: #14238A; color: white;" link title="DashBoard">
           <v-icon style="color: white;">
             mdi-view-dashboard
           </v-icon>
           <p>Dashboard</p>
         </v-list-item>
 
-        <v-list-item style="background-color: #311B92; color: white;" link title="Students">
+        <v-list-item style="background-color: #14238A; color: white;" link title="Students">
           <v-icon style="color: white;">
             mdi-account-school
           </v-icon>
           <p>Students</p>
         </v-list-item>
 
-        <v-list-item style="background-color: #311B92; color: white;" link title="Parents">
+        <v-list-item style="background-color: #14238A; color: white;" link title="Parents">
           <v-icon style="color: white;">
             mdi-account-multiple
           </v-icon>
           <p>Parents</p>
         </v-list-item>
 
-        <v-list-item style="background-color: #311B92; color: white;" link title="Teachers">
+        <v-list-item style="background-color: #14238A; color: white;" link title="Teachers">
           <v-icon style="color: white;">
             mdi-human-male-board
           </v-icon>
           <p>Teachers</p>
         </v-list-item>
 
-        <v-list-item style="background-color: #311B92; color: white;" link title="Account">
+        <v-list-item style="background-color: #14238A; color: white;" link title="Account">
           <v-icon style="color: white;">
             mdi-laptop
           </v-icon>
           <p>Account</p>
         </v-list-item>
 
-        <v-list-item style="background-color: #311B92; color: white;" link title="Subject">
+        <v-list-item style="background-color: #14238A; color: white;" link title="Subject">
           <v-icon style="color: white;">
             mdi-book-open-blank-variant-outline
           </v-icon>
           <p>Subject</p>
         </v-list-item>
 
-        <v-list-item style="background-color: #311B92; color: white;" link title="Settings">
+        <v-list-item style="background-color: #14238A; color: white;" link title="Settings">
           <v-icon style="color: white;">
             mdi-cog
           </v-icon>

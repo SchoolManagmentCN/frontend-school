@@ -177,7 +177,7 @@
                 <v-btn
                   class="choose-button"
                   outlined
-                  color="#black"
+                  color="black"
                   @click="triggerFileInput"
                 >
                   Choose File
@@ -267,7 +267,7 @@ export default {
       if (file) {
         const reader = new FileReader()
         reader.onload = (e) => {
-          this.imagePreview = e.target.result
+          this.imagePreviewTeacher = e.target.result
         }
         reader.readAsDataURL(file)
       }
@@ -280,7 +280,7 @@ export default {
 .subrayado-rojo {
   color: black;
   text-decoration: underline;
-  text-decoration-color: red;
+  text-decoration-color: #D60A0B;
 }
 
 .image-upload-container {

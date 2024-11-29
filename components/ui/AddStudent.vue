@@ -8,31 +8,26 @@
     </p>
     <v-container>
       <v-card class="pa-4" height="1050">
-        <v-form>
+        <v-form @submit.prevent="submitForm">
           <h3 class="h3-style">
             Add New Students
           </h3>
           <v-row>
-            <v-col
-              cols="3"
-            >
-              <p>Name *</p><p>
-                <v-text-field
-                  v-model="nameStudent"
-                  color="red"
-                  background-color="#E8EAF6"
-                  type="name"
-                  filled
-                  :rules="notEmpty"
-                />
-              </p>
+            <v-col cols="3">
+              <p>Name *</p>
+              <v-text-field
+                v-model="studentData.name"
+                color="red"
+                background-color="#E8EAF6"
+                type="name"
+                filled
+                :rules="notEmpty"
+              />
             </v-col>
-            <v-col
-              cols="3"
-            >
+            <v-col cols="3">
               <p>Gender *</p>
               <v-select
-                v-model="GenderStudent"
+                v-model="studentData.gender"
                 :items="itemsGender"
                 color="red"
                 background-color="#E8EAF6"
@@ -41,12 +36,10 @@
                 :rules="notEmpty"
               />
             </v-col>
-            <v-col
-              cols="3"
-            >
+            <v-col cols="3">
               <p>Class *</p>
               <v-select
-                v-model="ClassStudent"
+                v-model="studentData.classes"
                 :items="itemsClass"
                 color="red"
                 background-color="#E8EAF6"
@@ -55,12 +48,10 @@
                 :rules="notEmpty"
               />
             </v-col>
-            <v-col
-              cols="3"
-            >
+            <v-col cols="3">
               <p>Date of Birth *</p>
               <v-text-field
-                v-model="birthStudent"
+                v-model="studentData.dateOfBirth"
                 color="red"
                 background-color="#E8EAF6"
                 filled
@@ -71,24 +62,20 @@
             </v-col>
           </v-row>
           <v-row>
-            <v-col
-              cols="3"
-            >
+            <v-col cols="3">
               <p>Blood Group *</p>
               <v-text-field
-                v-model="bloodGroupStudent"
+                v-model="studentData.bloodGroup"
                 color="red"
                 background-color="#E8EAF6"
                 filled
                 :rules="notEmpty"
               />
             </v-col>
-            <v-col
-              cols="3"
-            >
+            <v-col cols="3">
               <p>Religion *</p>
               <v-select
-                v-model="religionStudent"
+                v-model="studentData.religion"
                 :items="itemsReligion"
                 color="red"
                 background-color="#E8EAF6"
@@ -97,114 +84,16 @@
                 :rules="notEmpty"
               />
             </v-col>
-            <v-col
-              cols="3"
-            >
+            <v-col cols="3">
               <p>Admission Date *</p>
               <v-text-field
-                v-model="admissionStudent"
+                v-model="studentData.admissionDate"
                 color="red"
                 background-color="#E8EAF6"
                 filled
                 label="dd/mm/yy"
                 append-icon="mdi-calendar"
                 :rules="admissionRules"
-              />
-            </v-col>
-          </v-row>
-          <h3 class="new-parentsStyle">
-            Add New Parents
-          </h3>
-          <v-row>
-            <v-col
-              cols="3"
-            >
-              <p>Father's Name</p>
-              <v-text-field
-                v-model="fatherName"
-                color="red"
-                background-color="#E8EAF6"
-                type="name"
-                filled
-                :rules="notEmpty"
-              />
-            </v-col>
-            <v-col
-              cols="3"
-            >
-              <p>Mother's Name</p>
-              <v-text-field
-                v-model="motherName"
-                color="red"
-                background-color="#E8EAF6"
-                type="name"
-                filled
-                :rules="notEmpty"
-              />
-            </v-col>
-            <v-col
-              cols="3"
-            >
-              <p>Email</p>
-              <v-text-field
-                v-model="emailParents"
-                color="red"
-                background-color="#E8EAF6"
-                type="email"
-                filled
-                :rules="correo"
-              />
-            </v-col>
-            <v-col
-              cols="3"
-            >
-              <p>Phone</p>
-              <v-text-field
-                v-model="phoneParents"
-                color="red"
-                background-color="#E8EAF6"
-                type="phone"
-                filled
-                :rules="phone"
-              />
-            </v-col>
-            <v-col
-              cols="3"
-            >
-              <p>Father's Ocupation</p>
-              <v-text-field
-                v-model="fatherOcupation"
-                color="red"
-                background-color="#E8EAF6"
-                type="name"
-                filled
-                :rules="notEmpty"
-              />
-            </v-col>
-            <v-col
-              cols="3"
-            >
-              <p>Adress *</p>
-              <v-text-field
-                v-model="adressParents"
-                color="red"
-                background-color="#E8EAF6"
-                filled
-                :rules="notEmpty"
-              />
-            </v-col>
-            <v-col
-              cols="3"
-            >
-              <p>Religion *</p>
-              <v-select
-                v-model="religionParents"
-                :items="itemsReligion"
-                color="red"
-                background-color="#E8EAF6"
-                filled
-                label="Please Select Religion"
-                :rules="notEmpty"
               />
             </v-col>
           </v-row>
@@ -221,36 +110,138 @@
                 <v-btn
                   class="choose-button"
                   outlined
-                  color="#black"
-                  @click="triggerFileInput"
+                  color="black"
+                  @click="triggerFileInput('student')"
                 >
                   Choose File
                 </v-btn>
               </v-col>
             </div>
             <input
-              ref="fileInput"
+              ref="fileInputStudent"
               type="file"
               accept="image/*"
               style="display: none;"
-              @change="onImageChange"
+              @change="onImageChange('student')"
+            >
+          </v-row>
+          <h3 class="new-parentsStyle">
+            Add New Parents
+          </h3>
+          <v-row>
+            <v-col cols="3">
+              <p>Father's Name</p>
+              <v-text-field
+                v-model="parentData.fatherName"
+                color="red"
+                background-color="#E8EAF6"
+                type="name"
+                filled
+                :rules="notEmpty"
+              />
+            </v-col>
+            <v-col cols="3">
+              <p>Mother's Name</p>
+              <v-text-field
+                v-model="parentData.motherName"
+                color="red"
+                background-color="#E8EAF6"
+                type="name"
+                filled
+                :rules="notEmpty"
+              />
+            </v-col>
+            <v-col cols="3">
+              <p>Email</p>
+              <v-text-field
+                v-model="parentData.email"
+                color="red"
+                background-color="#E8EAF6"
+                type="email"
+                filled
+                :rules="correo"
+              />
+            </v-col>
+            <v-col cols="3">
+              <p>Phone</p>
+              <v-text-field
+                v-model="parentData.phone"
+                color="red"
+                background-color="#E8EAF6"
+                type="phone"
+                filled
+                :rules="phone"
+              />
+            </v-col>
+            <v-col cols="3">
+              <p>Father's Occupation</p>
+              <v-text-field
+                v-model="parentData.fatherOccupation"
+                color="red"
+                background-color="#E8EAF6"
+                type="name"
+                filled
+                :rules="notEmpty"
+              />
+            </v-col>
+            <v-col cols="3">
+              <p>Address *</p>
+              <v-text-field
+                v-model="parentData.address"
+                color="red"
+                background-color="#E8EAF6"
+                filled
+                :rules="notEmpty"
+              />
+            </v-col>
+            <v-col cols="3">
+              <p>Religion *</p>
+              <v-select
+                v-model="parentData.religion"
+                :items="itemsReligion"
+                color="red"
+                background-color="#E8EAF6"
+                filled
+                label="Please Select Religion"
+                :rules="notEmpty"
+              />
+            </v-col>
+          </v-row>
+          <v-row>
+            <div class="image-upload-container">
+              <v-col cols="auto">
+                <div
+                  :class="['image-circle', { 'has-image': imagePreviewParent }]"
+                  :style="{ backgroundImage: imagePreviewParent ? `url(${imagePreviewParent})` : '' }"
+                />
+              </v-col>
+              <v-col>
+                <p>Upload Parent Photo (150px X 150px)</p>
+                <v-btn
+                  class="choose-button"
+                  outlined
+                  color="black"
+                  @click="triggerFileInput('parent')"
+                >
+                  Choose File
+                </v-btn>
+              </v-col>
+            </div>
+            <input
+              ref="fileInputParent"
+              type="file"
+              accept="image/*"
+              style="display: none;"
+              @change="onImageChange('parent')"
             >
           </v-row>
           <v-row>
-            <v-col
-              cols="auto"
-            />
-            <v-btn
-              class="save-style"
-              color="red"
-            >
+            <v-col cols="auto" />
+            <v-btn class="save-style" color="red" type="submit">
               Save
             </v-btn>
             <v-col cols="auto" />
-            <v-btn
-              class="reset-style"
-              color="#1A237E"
-            >
+            <v-btn class="reset-style" color="#1A237E">
               Reset
             </v-btn>
           </v-row>
@@ -261,24 +252,33 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
   data () {
     return {
-      nameStudent: null,
-      birthStudent: null,
-      GenderStudent: null,
-      ClassStudent: null,
-      bloodGroupStudent: null,
-      religionStudent: null,
-      admissionStudent: null,
-      fatherName: null,
-      motherName: null,
-      emailParents: null,
-      phoneParents: null,
-      fatherOcupation: null,
-      adressParents: null,
-      religionParents: null,
+      studentData: {
+        name: null,
+        gender: null,
+        dateOfBirth: null,
+        bloodGroup: null,
+        religion: null,
+        admissionDate: null,
+        classes: null
+      },
+      parentData: {
+        fatherName: null,
+        motherName: null,
+        email: null,
+        phone: null,
+        fatherOccupation: null,
+        address: null,
+        religion: null
+      },
       imagePreviewStudent: null,
+      imagePreviewParent: null,
+      studentImage: null,
+      parentImage: null,
       notEmpty: [
         v => !!v || 'The field could not be empty'
       ],
@@ -306,17 +306,60 @@ export default {
     }
   },
   methods: {
-    triggerFileInput () {
-      this.$refs.fileInput.click()
+    triggerFileInput (type) {
+      if (type === 'student') {
+        this.$refs.fileInputStudent.click()
+      } else if (type === 'parent') {
+        this.$refs.fileInputParent.click()
+      }
     },
-    onImageChange (event) {
+    onImageChange (type) {
       const file = event.target.files[0]
       if (file) {
         const reader = new FileReader()
         reader.onload = (e) => {
-          this.imagePreviewStudent = e.target.result
+          if (type === 'student') {
+            this.imagePreviewStudent = e.target.result
+            this.studentImage = file
+          } else if (type === 'parent') {
+            this.imagePreviewParent = e.target.result
+            this.parentImage = file
+          }
         }
         reader.readAsDataURL(file)
+      }
+    },
+    async submitForm () {
+      const formData = new FormData()
+      formData.append('student[name]', this.studentData.name)
+      formData.append('student[gender]', this.studentData.gender)
+      formData.append('student[fatherName]', this.parentData.fatherName)
+      formData.append('student[motherName]', this.parentData.motherName)
+      formData.append('student[dateOfBirth]', this.studentData.dateOfBirth)
+      formData.append('student[Religion]', this.studentData.religion)
+      formData.append('student[fatherOccupation]', this.parentData.fatherOccupation)
+      formData.append('student[email]', this.parentData.email)
+      formData.append('student[admissionDate]', this.studentData.admissionDate)
+      formData.append('student[classes]', this.studentData.classes)
+      formData.append('parent[name]', this.parentData.fatherName)
+      formData.append('parent[gender]', this.parentData.gender)
+      formData.append('parent[phone]', this.parentData.phone)
+      formData.append('parent[religion]', this.parentData.religion)
+      formData.append('parent[occupation]', this.parentData.fatherOccupation)
+      formData.append('parent[email]', this.parentData.email)
+      formData.append('parent[address]', this.parentData.address)
+      formData.append('studentImage', this.studentImage)
+      formData.append('parentImage', this.parentImage)
+
+      try {
+        const response = await axios.post('http://localhost:8081/api/students', formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          }
+        })
+        console.log('Student and parent added successfully:', response.data)
+      } catch (error) {
+        console.error('Error adding student and parent:', error)
       }
     }
   }
@@ -361,11 +404,10 @@ p {
   width: 130px;
   border: 2px solid #000;
   border-radius: 5px;
-  padding-top: 50px;
 }
 
 .reset-style {
-  color:white;
+  color: white;
   font-size: 12px;
   width: 130px;
   border: 2px solid #000;
@@ -400,5 +442,4 @@ p {
   padding-bottom: 20px;
   font-size: 30px;
 }
-
 </style>

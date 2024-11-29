@@ -13,7 +13,7 @@
             <v-card-text>
               <v-form>
                 <v-text-field
-                  v-model="email"
+                  v-model="username"
                   label="Username"
                   placeholder="Prince Afful Quansah"
                   outlined
@@ -37,7 +37,7 @@
                   class="text-none white--text"
                   x-large
                   block
-                  @click="loading = !loading"
+                  @click="login"
                 >
                   SIGN IN
                 </v-btn>
@@ -58,9 +58,30 @@ export default {
   name: 'LoginLayout',
   data () {
     return {
-      email: '',
+      username: '',
       password: '',
       loading: false
+    }
+  },
+  methods: {
+    async login () {
+      try {
+        this.loading = true
+        console.log('Attempting login with:', this.username, this.password)
+        const response = await this.$auth.loginWith('local', {
+          data: {
+            username: this.username,
+            password: this.password
+          }
+        })
+        console.log('Login successful:', response)
+        this.$router.push('/dashboard/admin') // Redirect to dashboard on successful login
+      } catch (error) {
+        console.error('Error during login:', error)
+        alert('Usuario o contraseña incorrectos.')
+      } finally {
+        this.loading = false
+      }
     }
   }
 }

@@ -1,10 +1,10 @@
 import colors from 'vuetify/es5/util/colors'
 
 export default {
-  // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
+  // Disable server-side rendering
   ssr: false,
 
-  // Global page headers: https://go.nuxtjs.dev/config-head
+  // Global page headers
   head: {
     titleTemplate: '%s - frontend-school',
     title: 'frontend-school',
@@ -17,43 +17,39 @@ export default {
       { hid: 'description', name: 'description', content: '' },
       { name: 'format-detection', content: 'telephone=no' }
     ],
-    link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
-    ]
+    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
   },
 
-  // Global CSS: https://go.nuxtjs.dev/config-css
-  css: [
-  ],
+  // Global CSS
+  css: [],
 
-  // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [
-  ],
+  // Plugins to run before rendering page
+  plugins: [],
 
-  // Auto import components: https://go.nuxtjs.dev/config-components
+  // Auto import components
   components: true,
 
-  // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
+  // Modules for dev and build
   buildModules: [
-    // https://go.nuxtjs.dev/eslint
+    // ESlint module
     '@nuxtjs/eslint-module',
-    // https://go.nuxtjs.dev/vuetify
+    // Vuetify module
     '@nuxtjs/vuetify'
   ],
 
-  // Modules: https://go.nuxtjs.dev/config-modules
+  // Modules
   modules: [
-    // https://go.nuxtjs.dev/axios
-    '@nuxtjs/auth-next',
-    '@nuxtjs/axios'
+    // Axios module
+    '@nuxtjs/axios',
+    // Auth module for authentication
+    '@nuxtjs/auth-next'
   ],
 
-  // Axios module configuration: https://go.nuxtjs.dev/config-axios
-  axios: {
-    // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
-    baseURL: '/' // Aquí va la API de nuestro backend
-  },
+  // Axios module configuration
 
+  axios: {
+    baseURL: 'http://localhost:8181' // Asegúrate de que esta URL sea correcta
+  },
   auth: {
     strategies: {
       local: {
@@ -64,22 +60,22 @@ export default {
           type: 'Bearer'
         },
         user: {
-          property: false,
+          property: 'user',
+          autoFetch: false // Desactiva la obtención automática de datos del usuario
         },
         endpoints: {
-          login: { url: '/auth/login', method: 'post' },
-          logout: { url: '/auth/logout', method: 'post' },
+          login: { url: '/api/login', method: 'post' },
+          logout: { url: '/api/logout', method: 'post' }
         }
       }
     },
     redirect: {
       login: '/login',
-      logout: '/',
-      home: '/dashboard'
+      logout: '/login',
+      home: '/dashboard/admin'
     }
   },
-
-  // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
+  // Vuetify module configuration
   vuetify: {
     customVariables: ['~/assets/variables.scss'],
     theme: {
@@ -98,7 +94,10 @@ export default {
     }
   },
 
-  // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {
-  }
+  // Build configuration
+  build: {}
+  // // Middleware
+  // router: {
+  //   middleware: ['auth'] // Asegúrate de usar el middleware globalmente si es necesario
+  // }
 }
