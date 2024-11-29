@@ -1,14 +1,18 @@
 <template>
   <v-app dark>
     <v-main>
-        <Nuxt />
+      <navegation />
+      <Nuxt />
     </v-main>
   </v-app>
 </template>
 
 <script>
+import Navegation from '~/layouts/navegation.vue'
+
 export default {
   name: 'DefaultLayout',
+  components: { Navegation },
   data () {
     return {
       clipped: false,

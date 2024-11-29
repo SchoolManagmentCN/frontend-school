@@ -56,6 +56,7 @@
 <script>
 export default {
   name: 'LoginLayout',
+  layout: 'login',
   data () {
     return {
       username: '',

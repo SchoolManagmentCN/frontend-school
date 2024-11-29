@@ -14,7 +14,6 @@
             label="Search by name"
             outlined
             dense
-            clearable
           />
         </v-col>
 
@@ -27,12 +26,6 @@
             dense
             clearable
           />
-        </v-col>
-
-        <v-col cols="4">
-          <v-btn color="red" @click="filterStudents">
-            Search
-          </v-btn>
         </v-col>
       </v-row>
 
@@ -85,13 +78,6 @@ export default {
         const matchesClass = this.selectedClass ? student.class === this.selectedClass : true
         return matchesName && matchesClass
       })
-    }
-  },
-  methods: {
-    filterStudents () {
-    },
-    goToDetails (studentId) {
-      this.$router.push({ path: `/studentDetail/${studentId}` })
     }
   }
 }

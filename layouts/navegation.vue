@@ -15,54 +15,68 @@
 
     <v-list>
       <v-list-item-group>
-        <v-list-item style="background-color: #14238A; color: white;" link title="DashBoard">
-          <v-icon style="color: white;">
-            mdi-view-dashboard
-          </v-icon>
-          <p>Dashboard</p>
-        </v-list-item>
+        <nuxt-link to="/dashboard/admin" exact>
+          <v-list-item style="background-color: #14238A; color: white;" title="DashBoard">
+            <v-icon style="color: white;">
+              mdi-view-dashboard
+            </v-icon>
+            <p>Dashboard</p>
+          </v-list-item>
+        </nuxt-link>
 
-        <v-list-item style="background-color: #14238A; color: white;" link title="Students">
-          <v-icon style="color: white;">
-            mdi-account-school
-          </v-icon>
-          <p>Students</p>
-        </v-list-item>
+        <nuxt-link to="/dashboard/student">
+          <v-list-item style="background-color: #14238A; color: white;" title="Students">
+            <v-icon style="color: white;">
+              mdi-account-school
+            </v-icon>
+            <p>Students</p>
+          </v-list-item>
+        </nuxt-link>
 
-        <v-list-item style="background-color: #14238A; color: white;" link title="Parents">
-          <v-icon style="color: white;">
-            mdi-account-multiple
-          </v-icon>
-          <p>Parents</p>
-        </v-list-item>
+        <nuxt-link to="/dashboard/parent">
+          <v-list-item style="background-color: #14238A; color: white;" title="Parents">
+            <v-icon style="color: white;">
+              mdi-account-multiple
+            </v-icon>
+            <p>Parents</p>
+          </v-list-item>
+        </nuxt-link>
 
-        <v-list-item style="background-color: #14238A; color: white;" link title="Teachers">
-          <v-icon style="color: white;">
-            mdi-human-male-board
-          </v-icon>
-          <p>Teachers</p>
-        </v-list-item>
+        <nuxt-link to="/dashboard/teacher">
+          <v-list-item style="background-color: #14238A; color: white;" title="Teachers">
+            <v-icon style="color: white;">
+              mdi-human-male-board
+            </v-icon>
+            <p>Teachers</p>
+          </v-list-item>
+        </nuxt-link>
 
-        <v-list-item style="background-color: #14238A; color: white;" link title="Account">
-          <v-icon style="color: white;">
-            mdi-laptop
-          </v-icon>
-          <p>Account</p>
-        </v-list-item>
+        <nuxt-link to="/account">
+          <v-list-item style="background-color: #14238A; color: white;" title="Account">
+            <v-icon style="color: white;">
+              mdi-laptop
+            </v-icon>
+            <p>Account</p>
+          </v-list-item>
+        </nuxt-link>
 
-        <v-list-item style="background-color: #14238A; color: white;" link title="Subject">
-          <v-icon style="color: white;">
-            mdi-book-open-blank-variant-outline
-          </v-icon>
-          <p>Subject</p>
-        </v-list-item>
+        <nuxt-link to="/dashboard/adminSubjects">
+          <v-list-item style="background-color: #14238A; color: white;" title="Subject">
+            <v-icon style="color: white;">
+              mdi-book-open-blank-variant-outline
+            </v-icon>
+            <p>Subject</p>
+          </v-list-item>
+        </nuxt-link>
 
-        <v-list-item style="background-color: #14238A; color: white;" link title="Settings">
-          <v-icon style="color: white;">
-            mdi-cog
-          </v-icon>
-          <p>Settings</p>
-        </v-list-item>
+        <nuxt-link to="/settings">
+          <v-list-item style="background-color: #14238A; color: white;" title="Settings">
+            <v-icon style="color: white;">
+              mdi-cog
+            </v-icon>
+            <p>Settings</p>
+          </v-list-item>
+        </nuxt-link>
       </v-list-item-group>
     </v-list>
   </v-navigation-drawer>
