@@ -1,143 +1,161 @@
 <template>
-  <v-container class="pa-4">
-    <!-- Foto de portada -->
-    <v-img
-      src="https://via.placeholder.com/1200x400"
-      class="mb-6"
-      height="200px"
-      width="100%"
-      contain
-    />
+  <div class="user-settings">
+    <!-- Portada -->
+    <div class="cover-photo" />
 
-    <v-row>
-      <!-- Foto de perfil -->
-      <v-col cols="12" md="3" class="text-center">
-        <v-avatar size="100">
-          <img src="https://via.placeholder.com/100" alt="Profile Picture">
-        </v-avatar>
-        <h3 class="mt-4">
-          John Doe
-        </h3>
-        <p>Teacher</p>
-      </v-col>
+    <!-- Foto de perfil -->
+    <div class="profile-container">
+      <img
+        src="https://via.placeholder.com/150"
+        alt="Profile Picture"
+        class="profile-picture"
+      >
+    </div>
 
-      <!-- Información del usuario -->
-      <v-col cols="12" md="9">
-        <v-row class="mb-4">
-          <v-col cols="3" class="text-right font-weight-bold">
-            School Name
+    <!-- Sección de detalles -->
+    <div class="details-section">
+      <h2 class="user-name">
+        Prince Afful Quansah - Admin
+      </h2>
+      <div class="form">
+        <v-row dense>
+          <v-col cols="3">
+            <label>School Name *</label>
           </v-col>
           <v-col cols="9">
-            High School
+            <v-text-field value="Firm Foundation School - Accra" readonly />
           </v-col>
         </v-row>
-        <v-row class="mb-4">
-          <v-col cols="3" class="text-right font-weight-bold">
-            Email
+        <v-row dense>
+          <v-col cols="3">
+            <label>Email *</label>
           </v-col>
           <v-col cols="9">
-            johndoe@example.com
+            <v-text-field value="arabagrant@gmail.com" readonly />
           </v-col>
         </v-row>
-        <v-row class="mb-4">
-          <v-col cols="3" class="text-right font-weight-bold">
-            # de teléfono
+        <v-row dense>
+          <v-col cols="3">
+            <label>Mobile No</label>
           </v-col>
           <v-col cols="9">
-            +1 234 567 890
+            <v-text-field value="0264622310" readonly />
           </v-col>
         </v-row>
-        <v-row class="mb-4">
-          <v-col cols="3" class="text-right font-weight-bold">
-            Ciudad
+        <v-row dense>
+          <v-col cols="3">
+            <label>City</label>
           </v-col>
           <v-col cols="9">
-            New York
+            <v-text-field value="Accra" readonly />
           </v-col>
         </v-row>
-        <v-row class="mb-4">
-          <v-col cols="3" class="text-right font-weight-bold">
-            Dirección
+        <v-row dense>
+          <v-col cols="3">
+            <label>Address</label>
           </v-col>
           <v-col cols="9">
-            1234 Elm Street
+            <v-text-field value="Greater-Accra" readonly />
           </v-col>
         </v-row>
-
-        <!-- Campos editables -->
-        <v-row class="mb-4">
-          <v-col cols="3" class="text-right font-weight-bold">
-            Usuario
+        <v-row dense>
+          <v-col cols="3">
+            <label>Username</label>
           </v-col>
-          <v-col cols="7">
-            <v-text-field v-model="username" dense hide-details outlined />
+          <v-col cols="8">
+            <v-text-field value="Prince Afful Quansah" readonly />
           </v-col>
-          <v-col cols="2">
-            <v-btn icon @click="editField('username')">
+          <v-col cols="1">
+            <v-btn icon>
               <v-icon>mdi-pencil</v-icon>
             </v-btn>
           </v-col>
         </v-row>
-        <v-row class="mb-4">
-          <v-col cols="3" class="text-right font-weight-bold">
-            Contraseña
+        <v-row dense>
+          <v-col cols="3">
+            <label>Password</label>
           </v-col>
-          <v-col cols="7">
-            <v-text-field
-              v-model="password"
-              type="password"
-              dense
-              hide-details
-              outlined
-            />
+          <v-col cols="8">
+            <v-text-field value="*********" type="password" readonly />
           </v-col>
-          <v-col cols="2">
-            <v-btn icon @click="editField('password')">
+          <v-col cols="1">
+            <v-btn icon>
               <v-icon>mdi-pencil</v-icon>
             </v-btn>
           </v-col>
         </v-row>
-        <v-row class="mb-4">
-          <v-col cols="3" class="text-right font-weight-bold">
-            Lenguaje
+        <v-row dense>
+          <v-col cols="3">
+            <label>Language</label>
           </v-col>
           <v-col cols="9">
-            English
+            <v-select :items="['English', 'Spanish']" value="English" readonly />
           </v-col>
         </v-row>
-      </v-col>
-    </v-row>
-
-    <!-- Botón de guardar -->
-    <v-row justify="center" class="mt-6">
-      <v-btn color="red" class="white--text" @click="saveSettings">
-        Save
-      </v-btn>
-    </v-row>
-  </v-container>
+        <v-btn class="save-btn" color="red" dark>
+          Save
+        </v-btn>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
 export default {
-  data () {
-    return {
-      username: 'johndoe',
-      password: 'password123'
-    }
-  },
-  methods: {
-    editField (field) {
-      console.log(`Editing ${field}`)
-    },
-    saveSettings () {
-      console.log('Settings saved!')
-    }
-  }
+  name: 'UserSettings'
 }
 </script>
 
 <style scoped>
-.v-avatar img {
+.user-settings {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cover-photo {
+  width: 100%;
+  height: 200px;
+  background-image: url("https://via.placeholder.com/1000x200");
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.profile-container {
+  position: absolute;
+  top: 120px;
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+  margin-left: 250px;
+}
+
+.profile-picture {
+  width: 200px;
+  height: 200px;
   border-radius: 50%;
+  border: 5px solid white;
+}
+
+.details-section {
+  margin-top: 100px; /* Ajusta este valor para separar los datos de la foto */
+  width: 80%;
+}
+
+.user-name {
+  text-align: start;
+  margin-top: 50px;
+  margin-bottom: 20px;
+}
+
+label {
+  font-weight: bold;
+}
+
+.save-btn {
+  margin-top: 20px;
+  align-self: flex-end;
+  margin-bottom: 20px;
 }
 </style>
