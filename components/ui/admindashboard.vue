@@ -3,10 +3,12 @@
     <v-container>
       <v-row>
         <v-col>
-          <h1 style="font-weight: bold; text-decoration: underline; text-decoration-color: red;">
-            Admin Dashboard
-          </h1>
-          <p>Home</p>
+          <h2 class="h2-style">
+            <span class="subrayado-rojo">Admin</span> Dashboard
+          </h2>
+          <p class="p-style">
+            Home
+          </p>
         </v-col>
       </v-row>
       <v-row>
@@ -162,6 +164,12 @@ export default {
 </script>
 
 <style>
+.subrayado-rojo {
+  color: black;
+  text-decoration: underline;
+  text-decoration-color: #D60A0B;
+}
+
 .v-card {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 8px;

@@ -1,11 +1,13 @@
 <template>
   <v-main>
     <v-app>
-      <h1 style="font-weight: bold; text-decoration: underline; text-decoration-color: red;">
-        Account
-      </h1>
-      <p>Home  > Student Fees</p>
       <v-container>
+        <h2 class="h2-style">
+          <span class="subrayado-rojo">Acc</span>ount
+        </h2>
+        <p class="p-style">
+          Home<span style="color: red;">> Expenses</span>
+        </p>
         <v-card class="pa-4">
           <v-card-title class="text-h5">
             All Expense

@@ -1,5 +1,11 @@
 <template>
   <v-container>
+    <h2 class="h2-style">
+      <span class="subrayado-rojo">Stud</span>ents
+    </h2>
+    <p class="p-style">
+      Home<span style="color: red;">> All Students</span>
+    </p>
     <v-card class="pa-4">
       <!-- Título de la tabla -->
       <v-card-title class="text-h5">

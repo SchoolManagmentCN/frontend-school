@@ -1,5 +1,11 @@
 <template>
   <v-container>
+    <h2 class="h2-style">
+      <span class="subrayado-rojo">Teac</span>hers
+    </h2>
+    <p class="p-style">
+      Home<span style="color: red;">> All Teachers</span>
+    </p>
     <v-card>
       <v-card-title>
         <v-row class="align-center" style="width: 100%;">
@@ -145,5 +151,9 @@ export default {
 </script>
 
 <style scoped>
-/* Estilos opcionales para mejor presentación */
+.subrayado-rojo {
+  color: black;
+  text-decoration: underline;
+  text-decoration-color: #D60A0B;
+}
 </style>

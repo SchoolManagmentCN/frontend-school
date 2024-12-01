@@ -2,6 +2,12 @@
   <v-main>
     <v-app>
       <v-container>
+        <h2 class="h2-style">
+          <span class="subrayado-rojo">Acco</span>unt
+        </h2>
+        <p class="p-style">
+          Home<span style="color: red;">> Student Fees</span>
+        </p>
         <v-card class="pa-4">
           <v-card-title class="text-h5">
             All Students Fees Data
@@ -114,4 +120,9 @@ export default {
 </script>
 
 <style>
+.subrayado-rojo {
+  color: black;
+  text-decoration: underline;
+  text-decoration-color: #D60A0B;
+}
 </style>
