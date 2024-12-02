@@ -138,7 +138,7 @@ export default {
 
 .profile-container {
   position: absolute;
-  top: 120px;
+  top: 180px;
   display: flex;
   justify-content: flex-start;
   width: 100%;
