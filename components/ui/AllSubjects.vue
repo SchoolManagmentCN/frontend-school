@@ -1,5 +1,11 @@
 <template>
   <v-container>
+    <h2 class="h2-style">
+      <span class="subrayado-rojo">Suje</span>cts
+    </h2>
+    <p class="p-style">
+      Home<span style="color: red;">> Subject</span>
+    </p>
     <v-card>
       <v-card-title>
         <span class="text-h6">Subjects</span>
@@ -92,4 +98,9 @@ export default {
 </script>
 
 <style scoped>
+.subrayado-rojo {
+  color: black;
+  text-decoration: underline;
+  text-decoration-color: #D60A0B;
+}
 </style>

@@ -1,74 +1,72 @@
 <template>
-  <v-main>
-    <v-app>
-      <h1 style="font-weight: bold; text-decoration: underline; text-decoration-color: red;">
-        Account
-      </h1>
-      <p>Home  > Student Fees</p>
-      <v-container>
-        <v-card class="pa-4">
-          <v-card-title class="text-h5">
-            All Expense
-          </v-card-title>
+  <v-container>
+    <h2 class="h2-style">
+      <span class="subrayado-rojo">Acc</span>ount
+    </h2>
+    <p class="p-style">
+      Home<span style="color: red;">> Expenses</span>
+    </p>
+    <v-card class="pa-4">
+      <v-card-title class="text-h5">
+        All Expense
+      </v-card-title>
 
-          <!-- Filtros de búsqueda -->
-          <v-row class="mb-4" align="center">
-            <v-col cols="3">
-              <v-text-field
-                v-model="searchQuery"
-                label="Search by name"
-                outlined
-                dense
-                clearable
-              />
-            </v-col>
-
-            <v-col cols="3">
-              <v-select
-                v-model="selectedClass"
-                :items="classes"
-                label="Search by expense type"
-                outlined
-                dense
-                clearable
-              />
-            </v-col>
-
-            <v-col cols="3">
-              <v-select
-                v-model="selectedClass"
-                :items="classes"
-                label="Select Status"
-                outlined
-                dense
-                clearable
-              />
-            </v-col>
-
-            <v-col cols="3">
-              <v-btn color="red" @click="filterStudents">
-                Search
-              </v-btn>
-            </v-col>
-          </v-row>
-
-          <!-- Tabla de estudiantes -->
-          <v-data-table
-            :items="filteredStudents"
-            :headers="headers"
+      <!-- Filtros de búsqueda -->
+      <v-row class="mb-4" align="center">
+        <v-col cols="3">
+          <v-text-field
+            v-model="searchQuery"
+            label="Search by name"
+            outlined
             dense
-            item-key="id"
-            class="elevation-1"
-          >
-            <!-- Personalización de la columna de género -->
-            <template #[`item.gender`]="{ item }">
-              {{ item.gender === 'M' ? 'Male' : 'Female' }}
-            </template>
-          </v-data-table>
-        </v-card>
-      </v-container>
-    </v-app>
-  </v-main>
+            clearable
+          />
+        </v-col>
+
+        <v-col cols="3">
+          <v-select
+            v-model="selectedClass"
+            :items="classes"
+            label="Search by expense type"
+            outlined
+            dense
+            clearable
+          />
+        </v-col>
+
+        <v-col cols="3">
+          <v-select
+            v-model="selectedClass"
+            :items="classes"
+            label="Select Status"
+            outlined
+            dense
+            clearable
+          />
+        </v-col>
+
+        <v-col cols="3">
+          <v-btn color="red" @click="filterStudents">
+            Search
+          </v-btn>
+        </v-col>
+      </v-row>
+
+      <!-- Tabla de estudiantes -->
+      <v-data-table
+        :items="filteredStudents"
+        :headers="headers"
+        dense
+        item-key="id"
+        class="elevation-1"
+      >
+        <!-- Personalización de la columna de género -->
+        <template #[`item.gender`]="{ item }">
+          {{ item.gender === 'M' ? 'Male' : 'Female' }}
+        </template>
+      </v-data-table>
+    </v-card>
+  </v-container>
 </template>
 
 <script>

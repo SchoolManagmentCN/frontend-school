@@ -24,14 +24,43 @@
           </v-list-item>
         </nuxt-link>
 
-        <nuxt-link to="/dashboard/student">
-          <v-list-item style="background-color: #14238A; color: white;" title="Students">
-            <v-icon style="color: white;">
-              mdi-account-school
-            </v-icon>
-            <p>Students</p>
-          </v-list-item>
-        </nuxt-link>
+        <v-list-group
+          style="background-color: #14238A; color: white;"
+          title="Students"
+          prepend-icon="mdi-account-school"
+          active-class="active-group"
+        >
+          <template #activator>
+            <v-list-item-content>
+              <v-list-item-title style="color: white;">
+                Students
+              </v-list-item-title>
+            </v-list-item-content>
+          </template>
+          <v-list-item-group style="background-color: #2979FF;">
+            <nuxt-link to="/dashboard/student" style="text-decoration: none; color: white;">
+              <v-list-item>
+                <v-list-item-title style="color: white;">
+                  > All Students
+                </v-list-item-title>
+              </v-list-item>
+            </nuxt-link>
+            <nuxt-link to="/dashboard/AddStudentIndex" style="text-decoration: none; color: white;">
+              <v-list-item>
+                <v-list-item-title style="color: white;">
+                  > Add Students
+                </v-list-item-title>
+              </v-list-item>
+            </nuxt-link>
+            <nuxt-link to="/dashboard/StudentPromoIndex" style="text-decoration: none; color: white;">
+              <v-list-item>
+                <v-list-item-title style="color: white;">
+                  > Student Promotion
+                </v-list-item-title>
+              </v-list-item>
+            </nuxt-link>
+          </v-list-item-group>
+        </v-list-group>
 
         <nuxt-link to="/dashboard/parent">
           <v-list-item style="background-color: #14238A; color: white;" title="Parents">
@@ -42,23 +71,81 @@
           </v-list-item>
         </nuxt-link>
 
-        <nuxt-link to="/dashboard/teacher">
-          <v-list-item style="background-color: #14238A; color: white;" title="Teachers">
-            <v-icon style="color: white;">
-              mdi-human-male-board
-            </v-icon>
-            <p>Teachers</p>
-          </v-list-item>
-        </nuxt-link>
+        <v-list-group
+          style="background-color: #14238A; color: white;"
+          title="Students"
+          prepend-icon="mdi-human-male-board"
+          active-class="active-group"
+        >
+          <template #activator>
+            <v-list-item-content>
+              <v-list-item-title style="color: white;">
+                Teachers
+              </v-list-item-title>
+            </v-list-item-content>
+          </template>
+          <v-list-item-group style="background-color: #2979FF;">
+            <nuxt-link to="/dashboard/teacher" style="text-decoration: none; color: white;">
+              <v-list-item>
+                <v-list-item-title style="color: white;">
+                  > All Teachers
+                </v-list-item-title>
+              </v-list-item>
+            </nuxt-link>
+            <nuxt-link to="/dashboard/AddTeacherIndex" style="text-decoration: none; color: white;">
+              <v-list-item>
+                <v-list-item-title style="color: white;">
+                  > Add Teachers
+                </v-list-item-title>
+              </v-list-item>
+            </nuxt-link>
+          </v-list-item-group>
+        </v-list-group>
 
-        <nuxt-link to="/account">
-          <v-list-item style="background-color: #14238A; color: white;" title="Account">
-            <v-icon style="color: white;">
-              mdi-laptop
-            </v-icon>
-            <p>Account</p>
-          </v-list-item>
-        </nuxt-link>
+        <v-list-group
+          style="background-color: #14238A; color: white;"
+          title="Account"
+          prepend-icon="mdi-laptop"
+          active-class="active-group"
+        >
+          <template #activator>
+            <v-list-item-content>
+              <v-list-item-title style="color: white;">
+                Account
+              </v-list-item-title>
+            </v-list-item-content>
+          </template>
+          <v-list-item-group style="background-color: #2979FF;">
+            <nuxt-link to="/dashboard/FeesGroupIndex" style="text-decoration: none; color: white;">
+              <v-list-item>
+                <v-list-item-title style="color: white;">
+                  > Fees Group
+                </v-list-item-title>
+              </v-list-item>
+            </nuxt-link>
+            <nuxt-link to="/dashboard/studentfees" style="text-decoration: none; color: white;">
+              <v-list-item>
+                <v-list-item-title style="color: white;">
+                  > Student Fees
+                </v-list-item-title>
+              </v-list-item>
+            </nuxt-link>
+            <nuxt-link to="/dashboard/expense" style="text-decoration: none; color: white;">
+              <v-list-item>
+                <v-list-item-title style="color: white;">
+                  > Expense
+                </v-list-item-title>
+              </v-list-item>
+            </nuxt-link>
+            <nuxt-link to="/dashboard/AddExpensesIndex" style="text-decoration: none; color: white;">
+              <v-list-item>
+                <v-list-item-title style="color: white;">
+                  > Add Expense
+                </v-list-item-title>
+              </v-list-item>
+            </nuxt-link>
+          </v-list-item-group>
+        </v-list-group>
 
         <nuxt-link to="/dashboard/adminSubjects">
           <v-list-item style="background-color: #14238A; color: white;" title="Subject">
@@ -69,7 +156,7 @@
           </v-list-item>
         </nuxt-link>
 
-        <nuxt-link to="/settings">
+        <nuxt-link to="/dashboard/Usersettings">
           <v-list-item style="background-color: #14238A; color: white;" title="Settings">
             <v-icon style="color: white;">
               mdi-cog
