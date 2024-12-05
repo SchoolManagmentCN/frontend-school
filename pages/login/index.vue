@@ -3,8 +3,8 @@
     <v-container fluid>
       <v-row style="height: 100vh;">
         <v-col cols="6" class="left">
-          <img src="../../assets/img/logoUG.png" alt="">
-          <h1 style="color: white;">
+          <img src="../../assets/img/logoUG.png">
+          <h1 class="welcome-style">
             WELCOME
           </h1>
         </v-col>
@@ -16,6 +16,7 @@
                   v-model="username"
                   label="Username"
                   placeholder="Prince Afful Quansah"
+                  background-color="#E8EAF6"
                   outlined
                   dense
                 />
@@ -28,7 +29,7 @@
                   dense
                 />
                 <div class="text-left mb-4">
-                  <a href="#" class="text-decoration-none grey--text text--darken-1">Forgot your password?</a>
+                  <a href="#" class="forgot-style">Forgot your password?</a>
                 </div>
                 <v-btn
                   color="red darken-2"
@@ -44,7 +45,7 @@
               </v-form>
             </v-card-text>
           </v-card>
-          <div class="text-center mt-8 caption grey--text text--darken-1">
+          <div class="firm-style">
             © 2021 Firm Foundation School Management
           </div>
         </v-col>
@@ -135,4 +136,22 @@ export default {
   height: 50px;
   font-weight: bold;
 }
+
+.welcome-style {
+  color: white;
+  font-size: 70px;
+}
+
+.forgot-style {
+  text-decoration: underline;
+  color: #14238A;
+}
+
+.firm-style {
+  text-align: center;
+  margin: 20px;
+  padding: 20px;
+  color: #FFFFFF;
+}
+
 </style>

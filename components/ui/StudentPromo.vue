@@ -89,6 +89,7 @@
           </v-row>
         </v-form>
       </v-card>
+      <span class="firm-style">© Copyrights</span> firmfoundation <span class="firm-style">2021. All rights reserved</span>
     </v-container>
   </div>
 </template>
@@ -141,22 +142,25 @@ export default {
   border-radius: 5px;
 }
 
-.h2-style {
+.h3-style {
   padding-top: 30px;
-  padding-left: 13px;
+  padding-bottom: 20px;
+  font-size: 30px;
+}
+
+.h2-style {
+  padding-top: 82px;
+  padding-left: 51px;
   padding-bottom: 10px;
   font-size: 30px;
 }
 
 .p-style {
-  padding-left: 13px;
-  padding-bottom: 30px;
+  padding-left: 51px;
+  padding-bottom: 22px;
 }
 
-.h3-style {
-  padding-top: 25px;
-  padding-bottom: 20px;
-  font-size: 30px;
+.firm-style {
+  color: #757575;
 }
-
 </style>

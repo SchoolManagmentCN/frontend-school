@@ -1,22 +1,24 @@
 <template>
   <v-container>
     <h2 class="h2-style">
-      <span class="subrayado-rojo">Suje</span>cts
+      <span class="subrayado-rojo">Subj</span>ects
     </h2>
     <p class="p-style">
-      Home<span style="color: red;">> Subject</span>
+      Home<span style="color: red;"> > Subject</span>
     </p>
     <v-card>
       <v-card-title>
-        <span class="text-h6">Subjects</span>
-        <v-spacer />
-        <v-row align="center" justify="end">
-          <v-col cols="4">
+        <h3 class="h3-style">
+          All Subjects
+        </h3>
+        <v-row class="align-center" style="width: 100%;">
+          <v-col cols="4" class="d-flex">
             <v-text-field
               v-model="searchName"
               label="Search by name"
-              outlined
-              dense
+              color="#14238A"
+              background-color="#DDDEEE80"
+              filled
             />
           </v-col>
           <v-col cols="4">
@@ -24,12 +26,13 @@
               v-model="searchClass"
               :items="classes"
               label="Search by class"
-              outlined
-              dense
+              color="#14238A"
+              background-color="#DDDEEE80"
+              filled
             />
           </v-col>
-          <v-col cols="2">
-            <v-btn color="red" @click="searchSubjects">
+          <v-col cols="right">
+            <v-btn class="save-style" color="red" @click="searchSubjects">
               Search
             </v-btn>
           </v-col>
@@ -102,5 +105,35 @@ export default {
   color: black;
   text-decoration: underline;
   text-decoration-color: #D60A0B;
+}
+
+.h2-style {
+  padding-top: 60px;
+  padding-bottom: 10px;
+  font-size: 30px;
+}
+
+.p-style {
+  padding-bottom: 27px;
+}
+
+.h3-style {
+  padding-top: 30px;
+  padding-bottom: 20px;
+  font-size: 30px;
+}
+
+.save-style {
+  color: white;
+  font-size: 12px;
+  width: 200px;
+  border: 2px solid #000;
+  border-radius: 5px;
+  margin-right: 10px;
+  margin-bottom: 25px;
+}
+
+.firm-style {
+  color: #757575;
 }
 </style>

@@ -4,47 +4,39 @@
       <span class="subrayado-rojo">Pare</span>nts
     </h2>
     <p class="p-style">
-      Home<span style="color: red;">> All Parents</span>
+      Home<span style="color: red;"> > All Parents</span>
     </p>
     <v-card>
       <v-card-title>
+        <h3 class="h3-style">
+          All Parents Data
+        </h3>
         <v-row class="align-center" style="width: 100%;">
-          <!-- Título -->
-          <v-col cols="4">
-            <span class="text-h6">All Parents Data</span>
-          </v-col>
-
-          <!-- Barra de búsqueda -->
           <v-col cols="4" class="d-flex">
             <v-text-field
               v-model="searchQuery"
-              label="Search by name"
-              clearable
-              outlined
-              dense
-              hide-details
+              color="#14238A"
+              label="Search by name..."
+              background-color="#DDDEEE80"
+              filled
             />
           </v-col>
 
           <!-- Selector de ocupación -->
-          <v-col cols="3">
+          <v-col cols="4">
             <v-select
               v-model="selectedOccupation"
               :items="occupations"
-              label="Select occupation"
-              clearable
-              outlined
-              dense
-              hide-details
+              label="Select Occupation"
+              color="#14238A"
+              background-color="#DDDEEE80"
+              filled
             />
           </v-col>
-
-          <!-- Botón de búsqueda -->
-          <v-col cols="1">
-            <v-btn color="red" @click="filterParents">
-              Search
-            </v-btn>
-          </v-col>
+          <v-col cols="right" />
+          <v-btn class="save-style" color="red" type="submit">
+            Search
+          </v-btn>
         </v-row>
       </v-card-title>
 
@@ -76,6 +68,7 @@
         </v-simple-table>
       </v-card-text>
     </v-card>
+    <span class="firm-style">© Copyrights</span> firmfoundation <span class="firm-style">2021. All rights reserved</span>
   </v-container>
 </template>
 
@@ -117,5 +110,29 @@ export default {
   color: black;
   text-decoration: underline;
   text-decoration-color: #D60A0B;
+}
+
+.p-style {
+  padding-bottom: 33px;
+}
+
+.h3-style {
+  padding-top: 30px;
+  padding-bottom: 20px;
+  font-size: 30px;
+}
+
+.save-style {
+  color: white;
+  font-size: 12px;
+  width: 200px;
+  border: 2px solid #000;
+  border-radius: 5px;
+  margin-right: 55px;
+  margin-bottom: 25px;
+}
+
+.firm-style {
+  color: #757575;
 }
 </style>

@@ -4,10 +4,10 @@
       <span class="subrayado-rojo">Stud</span>ents
     </h2>
     <p class="p-style">
-      Home<span style="color: red;">> Student Admit Form</span>
+      Home<span style="color: red;"> > Student Admit Form</span>
     </p>
     <v-container>
-      <v-card class="pa-4" height="1050">
+      <v-card>
         <v-form @submit.prevent="submitForm">
           <h3 class="h3-style">
             Add New Students
@@ -247,6 +247,7 @@
           </v-row>
         </v-form>
       </v-card>
+      <span class="firm-style">© Copyrights</span> firmfoundation <span class="firm-style">2021. All rights reserved</span>
     </v-container>
   </div>
 </template>
@@ -404,6 +405,8 @@ p {
   width: 130px;
   border: 2px solid #000;
   border-radius: 5px;
+  margin-bottom: 20px;
+  margin-top: 20px;
 }
 
 .reset-style {
@@ -412,6 +415,8 @@ p {
   width: 130px;
   border: 2px solid #000;
   border-radius: 5px;
+  margin-bottom: 20px;
+  margin-top: 20px;
 }
 
 .choose-button {
@@ -426,14 +431,14 @@ p {
 }
 
 .h2-style {
-  padding-top: 30px;
-  padding-left: 13px;
+  padding-top: 82px;
+  padding-left: 51px;
   padding-bottom: 10px;
   font-size: 30px;
 }
 
 .p-style {
-  padding-left: 13px;
+  padding-left: 51px;
   padding-bottom: 30px;
 }
 
@@ -441,5 +446,9 @@ p {
   padding-top: 30px;
   padding-bottom: 20px;
   font-size: 30px;
+}
+
+.firm-style {
+  color: #757575;
 }
 </style>

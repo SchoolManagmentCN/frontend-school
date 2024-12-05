@@ -4,22 +4,24 @@
       <span class="subrayado-rojo">Stud</span>ents
     </h2>
     <p class="p-style">
-      Home<span style="color: red;">> All Students</span>
+      Home<span style="color: red;"> > All Students</span>
     </p>
     <v-card class="pa-4">
       <!-- Título de la tabla -->
-      <v-card-title class="text-h5">
+      <h3 class="h3-style">
         All Students Data
-      </v-card-title>
+      </h3>
 
       <!-- Filtros de búsqueda -->
-      <v-row class="mb-4" align="center">
+      <v-row align="center">
         <v-col cols="4">
           <v-text-field
             v-model="searchQuery"
-            label="Search by name"
-            outlined
-            dense
+            color="#14238A"
+            label="Search by name..."
+            background-color="#DDDEEE80"
+            type="name"
+            filled
           />
         </v-col>
 
@@ -27,11 +29,16 @@
           <v-select
             v-model="selectedClass"
             :items="classes"
+            color="#14238A"
             label="Select class"
-            outlined
-            dense
-            clearable
+            background-color="#DDDEEE80"
+            filled
           />
+        </v-col>
+        <v-col cols="right">
+          <v-btn class="save-style" color="red" type="submit">
+            Search
+          </v-btn>
         </v-col>
       </v-row>
 
@@ -49,6 +56,7 @@
         </template>
       </v-data-table>
     </v-card>
+    <span class="firm-style">© Copyrights</span> firmfoundation <span class="firm-style">2021. All rights reserved</span>
   </v-container>
 </template>
 
@@ -92,5 +100,29 @@ export default {
 <style scoped>
 .v-data-table {
   min-height: 400px;
+}
+
+.h3-style {
+  padding-top: 30px;
+  padding-bottom: 20px;
+  font-size: 30px;
+}
+
+.p-style {
+  padding-bottom: 33px;
+}
+
+.save-style {
+  color: white;
+  font-size: 12px;
+  width: 200px;
+  border: 2px solid #000;
+  border-radius: 5px;
+  margin-right: 55px;
+  margin-bottom: 25px;
+}
+
+.firm-style {
+  color: #757575;
 }
 </style>

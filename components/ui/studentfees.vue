@@ -1,25 +1,23 @@
 <template>
   <v-container>
     <h2 class="h2-style">
-      <span class="subrayado-rojo">Acco</span>unt
+      <span class="subrayado-rojo">Acc</span>ount
     </h2>
     <p class="p-style">
-      Home<span style="color: red;">> Student Fees</span>
+      Home<span style="color: red;"> > Student Fees</span>
     </p>
     <v-card class="pa-4">
-      <v-card-title class="text-h5">
+      <h3 class="h3-style">
         All Students Fees Data
-      </v-card-title>
-
-      <!-- Filtros de búsqueda -->
+      </h3>
       <v-row class="mb-4" align="center">
         <v-col cols="3">
           <v-text-field
             v-model="searchQuery"
             label="Search by name"
-            outlined
-            dense
-            clearable
+            color="#14238A"
+            background-color="#DDDEEE80"
+            filled
           />
         </v-col>
 
@@ -28,9 +26,9 @@
             v-model="selectedClass"
             :items="classes"
             label="Select class"
-            outlined
-            dense
-            clearable
+            color="#14238A"
+            background-color="#DDDEEE80"
+            filled
           />
         </v-col>
 
@@ -39,14 +37,13 @@
             v-model="selectedClass"
             :items="classes"
             label="Select Status"
-            outlined
-            dense
-            clearable
+            color="#14238A"
+            background-color="#DDDEEE80"
+            filled
           />
         </v-col>
-
-        <v-col cols="3">
-          <v-btn color="red" @click="filterStudents">
+        <v-col cols="right">
+          <v-btn class="save-style" color="red" type="submit" @click="filterStudents">
             Search
           </v-btn>
         </v-col>
@@ -66,6 +63,7 @@
         </template>
       </v-data-table>
     </v-card>
+    <span class="firm-style">© Copyrights</span> firmfoundation <span class="firm-style">2021. All rights reserved</span>
   </v-container>
 </template>
 
@@ -120,5 +118,29 @@ export default {
   color: black;
   text-decoration: underline;
   text-decoration-color: #D60A0B;
+}
+
+.h3-style {
+  padding-top: 30px;
+  padding-bottom: 20px;
+  font-size: 30px;
+}
+
+.p-style {
+  padding-bottom: 30px;
+}
+
+.firm-style {
+  color: #757575;
+}
+
+.save-style {
+  color: white;
+  font-size: 12px;
+  width: 200px;
+  border: 2px solid #000;
+  border-radius: 5px;
+  margin-right: 55px;
+  margin-bottom: 25px;
 }
 </style>

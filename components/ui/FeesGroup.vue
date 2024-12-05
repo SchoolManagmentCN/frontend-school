@@ -121,15 +121,15 @@ export default {
 }
 
 .h2-style {
-  padding-top: 30px;
-  padding-left: 13px;
+  padding-top: 82px;
+  padding-left: 51px;
   padding-bottom: 10px;
   font-size: 30px;
 }
 
 .p-style {
-  padding-left: 13px;
-  padding-bottom: 30px;
+  padding-left: 51px;
+  padding-bottom: 23px;
 }
 
 .h3-style {

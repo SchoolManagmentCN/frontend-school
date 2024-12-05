@@ -4,6 +4,7 @@
       <AllSubjects />
       <AddSubjects />
     </div>
+    <span class="firm-style">© Copyrights</span> firmfoundation <span class="firm-style">2021. All rights reserved</span>
   </v-container>
 </template>
 

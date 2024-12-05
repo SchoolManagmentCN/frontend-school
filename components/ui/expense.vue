@@ -4,12 +4,12 @@
       <span class="subrayado-rojo">Acc</span>ount
     </h2>
     <p class="p-style">
-      Home<span style="color: red;">> Expenses</span>
+      Home<span style="color: red;"> > Expenses</span>
     </p>
     <v-card class="pa-4">
-      <v-card-title class="text-h5">
+      <h3 class="h3-style">
         All Expense
-      </v-card-title>
+      </h3>
 
       <!-- Filtros de búsqueda -->
       <v-row class="mb-4" align="center">
@@ -17,9 +17,9 @@
           <v-text-field
             v-model="searchQuery"
             label="Search by name"
-            outlined
-            dense
-            clearable
+            color="#14238A"
+            background-color="#DDDEEE80"
+            filled
           />
         </v-col>
 
@@ -28,9 +28,9 @@
             v-model="selectedClass"
             :items="classes"
             label="Search by expense type"
-            outlined
-            dense
-            clearable
+            color="#14238A"
+            background-color="#DDDEEE80"
+            filled
           />
         </v-col>
 
@@ -39,14 +39,13 @@
             v-model="selectedClass"
             :items="classes"
             label="Select Status"
-            outlined
-            dense
-            clearable
+            color="#14238A"
+            background-color="#DDDEEE80"
+            filled
           />
         </v-col>
-
-        <v-col cols="3">
-          <v-btn color="red" @click="filterStudents">
+        <v-col cols="right">
+          <v-btn class="save-style" color="red" type="submit" @click="filterStudents">
             Search
           </v-btn>
         </v-col>
@@ -66,6 +65,7 @@
         </template>
       </v-data-table>
     </v-card>
+    <span class="firm-style">© Copyrights</span> firmfoundation <span class="firm-style">2021. All rights reserved</span>
   </v-container>
 </template>
 
@@ -115,5 +115,29 @@ export default {
 }
 </script>
 
-  <style>
-  </style>
+<style>
+.h3-style {
+  padding-top: 30px;
+  padding-bottom: 20px;
+  font-size: 30px;
+}
+
+.p-style {
+  padding-bottom: 30px;
+}
+
+.firm-style {
+  color: #757575;
+}
+
+.save-style {
+  color: white;
+  font-size: 12px;
+  width: 200px;
+  border: 2px solid #000;
+  border-radius: 5px;
+  margin-right: 55px;
+  margin-bottom: 25px;
+}
+
+</style>
