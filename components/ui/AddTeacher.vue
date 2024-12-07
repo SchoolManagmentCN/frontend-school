@@ -8,43 +8,36 @@
     </p>
     <v-container>
       <v-card class="pa-4" height="840">
-        <v-form>
+        <v-form @submit.prevent="submitForm">
           <h3 class="h3-style">
             Add New Teacher
           </h3>
           <v-row>
-            <v-col
-              cols="3"
-            >
-              <p>First Name *</p><p>
-                <v-text-field
-                  v-model="firstNameTeacher"
-                  color="red"
-                  background-color="#E8EAF6"
-                  type="name"
-                  filled
-                  :rules="notEmpty"
-                />
-              </p>
+            <v-col cols="3">
+              <p>First Name *</p>
+              <v-text-field
+                v-model="teacherData.firstName"
+                color="red"
+                background-color="#E8EAF6"
+                type="name"
+                filled
+                :rules="notEmpty"
+              />
             </v-col>
-            <v-col
-              cols="3"
-            >
+            <v-col cols="3">
               <p>Last Name *</p>
               <v-text-field
-                v-model="lastNameTeacher"
+                v-model="teacherData.lastName"
                 color="red"
                 background-color="#E8EAF6"
                 filled
                 :rules="notEmpty"
               />
             </v-col>
-            <v-col
-              cols="3"
-            >
+            <v-col cols="3">
               <p>Gender *</p>
               <v-select
-                v-model="GenderTeacher"
+                v-model="teacherData.gender"
                 :items="itemsGender"
                 color="red"
                 background-color="#E8EAF6"
@@ -53,12 +46,10 @@
                 :rules="notEmpty"
               />
             </v-col>
-            <v-col
-              cols="3"
-            >
+            <v-col cols="3">
               <p>Date of Birth *</p>
               <v-text-field
-                v-model="birthTeacher"
+                v-model="teacherData.dateOfBirth"
                 color="red"
                 background-color="#E8EAF6"
                 filled
@@ -69,24 +60,20 @@
             </v-col>
           </v-row>
           <v-row>
-            <v-col
-              cols="3"
-            >
+            <v-col cols="3">
               <p>Blood Group *</p>
               <v-text-field
-                v-model="bloodGroupTeacher"
+                v-model="teacherData.bloodGroup"
                 color="red"
                 background-color="#E8EAF6"
                 filled
                 :rules="notEmpty"
               />
             </v-col>
-            <v-col
-              cols="3"
-            >
+            <v-col cols="3">
               <p>Religion *</p>
               <v-select
-                v-model="religionTeacher"
+                v-model="teacherData.religion"
                 :items="itemsReligion"
                 color="red"
                 background-color="#E8EAF6"
@@ -95,12 +82,10 @@
                 :rules="notEmpty"
               />
             </v-col>
-            <v-col
-              cols="3"
-            >
+            <v-col cols="3">
               <p>Email</p>
               <v-text-field
-                v-model="emailTeacher"
+                v-model="teacherData.email"
                 color="red"
                 background-color="#E8EAF6"
                 type="email"
@@ -108,12 +93,10 @@
                 :rules="correo"
               />
             </v-col>
-            <v-col
-              cols="3"
-            >
+            <v-col cols="3">
               <p>Phone</p>
               <v-text-field
-                v-model="phoneTeacher"
+                v-model="teacherData.phone"
                 color="red"
                 background-color="#E8EAF6"
                 type="phone"
@@ -123,12 +106,10 @@
             </v-col>
           </v-row>
           <v-row>
-            <v-col
-              cols="3"
-            >
+            <v-col cols="3">
               <p>Class *</p>
               <v-select
-                v-model="ClassTeacher"
+                v-model="teacherData.class"
                 :items="itemsClass"
                 color="red"
                 background-color="#E8EAF6"
@@ -137,24 +118,20 @@
                 :rules="notEmpty"
               />
             </v-col>
-            <v-col
-              cols="3"
-            >
-              <p>Adress *</p>
+            <v-col cols="3">
+              <p>Address *</p>
               <v-text-field
-                v-model="adressTeacher"
+                v-model="teacherData.address"
                 color="red"
                 background-color="#E8EAF6"
                 filled
                 :rules="notEmpty"
               />
             </v-col>
-            <v-col
-              cols="3"
-            >
+            <v-col cols="3">
               <p>Admission Date *</p>
               <v-text-field
-                v-model="admissionTeacher"
+                v-model="teacherData.admissionDate"
                 color="red"
                 background-color="#E8EAF6"
                 filled
@@ -193,20 +170,12 @@
             >
           </v-row>
           <v-row>
-            <v-col
-              cols="auto"
-            />
-            <v-btn
-              class="save-style"
-              color="red"
-            >
+            <v-col cols="auto" />
+            <v-btn class="save-style" color="red" type="submit">
               Save
             </v-btn>
             <v-col cols="auto" />
-            <v-btn
-              class="reset-style"
-              color="#1A237E"
-            >
+            <v-btn class="reset-style" color="#1A237E" @click="resetForm">
               Reset
             </v-btn>
           </v-row>
@@ -218,21 +187,26 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
   data () {
     return {
-      firstNameTeacher: null,
-      lastNameTeacher: null,
-      GenderTeacher: null,
-      birthTeacher: null,
-      bloodGroupTeacher: null,
-      religionTeacher: null,
-      emailTeacher: null,
-      phoneTeacher: null,
-      ClassTeacher: null,
-      adressTeacher: null,
-      admissionTeacher: null,
+      teacherData: {
+        firstName: null,
+        lastName: null,
+        gender: null,
+        dateOfBirth: null,
+        bloodGroup: null,
+        religion: null,
+        email: null,
+        phone: null,
+        class: null,
+        address: null,
+        admissionDate: null
+      },
       imagePreviewTeacher: null,
+      teacherImage: null,
       notEmpty: [
         v => !!v || 'The field could not be empty'
       ],
@@ -260,6 +234,23 @@ export default {
     }
   },
   methods: {
+    resetForm () {
+      this.teacherData = {
+        firstName: null,
+        lastName: null,
+        gender: null,
+        dateOfBirth: null,
+        bloodGroup: null,
+        religion: null,
+        email: null,
+        phone: null,
+        class: null,
+        address: null,
+        admissionDate: null
+      }
+      this.imagePreviewTeacher = null
+      this.teacherImage = null
+    },
     triggerFileInput () {
       this.$refs.fileInput.click()
     },
@@ -269,8 +260,35 @@ export default {
         const reader = new FileReader()
         reader.onload = (e) => {
           this.imagePreviewTeacher = e.target.result
+          this.teacherImage = file
         }
         reader.readAsDataURL(file)
+      }
+    },
+    async submitForm () {
+      const formData = new FormData()
+      formData.append('teacher[firstName]', this.teacherData.firstName)
+      formData.append('teacher[lastName]', this.teacherData.lastName)
+      formData.append('teacher[gender]', this.teacherData.gender)
+      formData.append('teacher[dateOfBirth]', this.teacherData.dateOfBirth)
+      formData.append('teacher[bloodGroup]', this.teacherData.bloodGroup)
+      formData.append('teacher[religion]', this.teacherData.religion)
+      formData.append('teacher[email]', this.teacherData.email)
+      formData.append('teacher[phone]', this.teacherData.phone)
+      formData.append('teacher[class]', this.teacherData.class)
+      formData.append('teacher[address]', this.teacherData.address)
+      formData.append('teacher[admissionDate]', this.teacherData.admissionDate)
+      formData.append('teacherImage', this.teacherImage)
+
+      try {
+        const response = await axios.post('http://localhost:8181/api/teachers', formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          }
+        })
+        console.log('Teacher added successfully:', response.data)
+      } catch (error) {
+        console.error('Error adding teacher:', error)
       }
     }
   }

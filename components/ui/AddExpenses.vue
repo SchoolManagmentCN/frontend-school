@@ -8,17 +8,15 @@
     </p>
     <v-container>
       <v-card class="pa-4" height="500">
-        <v-form>
+        <v-form @submit.prevent="submitForm">
           <h3 class="h3-style">
             Add New Expenses
           </h3>
           <v-row>
-            <v-col
-              cols="3"
-            >
+            <v-col cols="3">
               <p>Name *</p>
               <v-text-field
-                v-model="nameExpense"
+                v-model="expenseData.name"
                 color="red"
                 background-color="#E8EAF6"
                 type="name"
@@ -26,12 +24,10 @@
                 :rules="notEmpty"
               />
             </v-col>
-            <v-col
-              cols="3"
-            >
+            <v-col cols="3">
               <p>Expense Type *</p>
               <v-select
-                v-model="expenseType"
+                v-model="expenseData.expenseType"
                 :items="itemsExpenseType"
                 color="red"
                 background-color="#E8EAF6"
@@ -40,12 +36,10 @@
                 :rules="notEmpty"
               />
             </v-col>
-            <v-col
-              cols="3"
-            >
+            <v-col cols="3">
               <p>Status *</p>
               <v-select
-                v-model="statusExpense"
+                v-model="expenseData.status"
                 :items="itemsStatus"
                 color="red"
                 background-color="#E8EAF6"
@@ -54,12 +48,10 @@
                 :rules="notEmpty"
               />
             </v-col>
-            <v-col
-              cols="3"
-            >
+            <v-col cols="3">
               <p>Amount *</p>
               <v-text-field
-                v-model="amount"
+                v-model="expenseData.amount"
                 color="red"
                 background-color="#E8EAF6"
                 type="name"
@@ -69,12 +61,10 @@
             </v-col>
           </v-row>
           <v-row>
-            <v-col
-              cols="3"
-            >
+            <v-col cols="3">
               <p>Phone</p>
               <v-text-field
-                v-model="phoneExpense"
+                v-model="expenseData.phone"
                 color="red"
                 background-color="#E8EAF6"
                 type="name"
@@ -82,12 +72,10 @@
                 :rules="phone"
               />
             </v-col>
-            <v-col
-              cols="3"
-            >
+            <v-col cols="3">
               <p>E-Mail Address</p>
               <v-text-field
-                v-model="emailExpense"
+                v-model="expenseData.email"
                 color="red"
                 background-color="#E8EAF6"
                 type="name"
@@ -95,12 +83,10 @@
                 :rules="correo"
               />
             </v-col>
-            <v-col
-              cols="3"
-            >
+            <v-col cols="3">
               <p>Due Date</p>
               <v-text-field
-                v-model="dueDate"
+                v-model="expenseData.dueDate"
                 color="red"
                 background-color="#E8EAF6"
                 filled
@@ -111,20 +97,12 @@
             </v-col>
           </v-row>
           <v-row>
-            <v-col
-              cols="auto"
-            />
-            <v-btn
-              class="save-style"
-              color="red"
-            >
+            <v-col cols="auto" />
+            <v-btn class="save-style" color="red" type="submit">
               Save
             </v-btn>
             <v-col cols="auto" />
-            <v-btn
-              class="reset-style"
-              color="#1A237E"
-            >
+            <v-btn class="reset-style" color="#1A237E" @click="resetForm">
               Reset
             </v-btn>
           </v-row>
@@ -136,16 +114,20 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
   data () {
     return {
-      nameExpense: null,
-      expenseType: null,
-      statusExpense: null,
-      amount: null,
-      phoneExpense: null,
-      emailExpense: null,
-      dueDate: null,
+      expenseData: {
+        name: null,
+        expenseType: null,
+        status: null,
+        amount: null,
+        phone: null,
+        email: null,
+        dueDate: null
+      },
       notEmpty: [
         v => !!v || 'The field could not be empty'
       ],
@@ -164,6 +146,40 @@ export default {
       correo: [
         v => /.+@.+\..+/.test(v) || 'E-mail must be valid'
       ]
+    }
+  },
+  methods: {
+    resetForm () {
+      this.expenseData = {
+        name: null,
+        expenseType: null,
+        status: null,
+        amount: null,
+        phone: null,
+        email: null,
+        dueDate: null
+      }
+    },
+    async submitForm () {
+      const formData = new FormData()
+      formData.append('expense[name]', this.expenseData.name)
+      formData.append('expense[expenseType]', this.expenseData.expenseType)
+      formData.append('expense[status]', this.expenseData.status)
+      formData.append('expense[amount]', this.expenseData.amount)
+      formData.append('expense[phone]', this.expenseData.phone)
+      formData.append('expense[email]', this.expenseData.email)
+      formData.append('expense[dueDate]', this.expenseData.dueDate)
+
+      try {
+        const response = await axios.post('http://localhost:8181/api/expenses', formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          }
+        })
+        console.log('Expense added successfully:', response.data)
+      } catch (error) {
+        console.error('Error adding expense:', error)
+      }
     }
   }
 }
@@ -185,7 +201,7 @@ export default {
 }
 
 .reset-style {
-  color:white;
+  color: white;
   font-size: 12px;
   width: 150px;
   border: 2px solid #000;

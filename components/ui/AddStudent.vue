@@ -241,7 +241,7 @@
               Save
             </v-btn>
             <v-col cols="auto" />
-            <v-btn class="reset-style" color="#1A237E">
+            <v-btn class="reset-style" color="#1A237E" @click="resetForm">
               Reset
             </v-btn>
           </v-row>
@@ -307,6 +307,30 @@ export default {
     }
   },
   methods: {
+    resetForm () {
+      this.studentData = {
+        name: null,
+        gender: null,
+        dateOfBirth: null,
+        bloodGroup: null,
+        religion: null,
+        admissionDate: null,
+        classes: null
+      }
+      this.parentData = {
+        fatherName: null,
+        motherName: null,
+        email: null,
+        phone: null,
+        fatherOccupation: null,
+        address: null,
+        religion: null
+      }
+      this.imagePreviewStudent = null
+      this.imagePreviewParent = null
+      this.studentImage = null
+      this.parentImage = null
+    },
     triggerFileInput (type) {
       if (type === 'student') {
         this.$refs.fileInputStudent.click()
@@ -353,7 +377,7 @@ export default {
       formData.append('parentImage', this.parentImage)
 
       try {
-        const response = await axios.post('http://localhost:8081/api/students', formData, {
+        const response = await axios.post('http://localhost:8181/api/students', formData, {
           headers: {
             'Content-Type': 'multipart/form-data'
           }

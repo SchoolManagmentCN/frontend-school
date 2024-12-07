@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <v-card>
-      <v-form ref="form">
+      <v-form @submit.prevent="submitForm">
         <h3 class="h3-style">
           Add New Subject
         </h3>
@@ -32,41 +32,27 @@
             />
           </v-col>
           <v-col cols="3">
-            <p>Classes *</p>
-            <v-text-field
-              v-model="newSubject.classes"
+            <p>Class *</p>
+            <v-select
+              v-model="newSubject.class"
+              :items="itemsClass"
               color="red"
               background-color="#E8EAF6"
-              type="name"
               filled
-              :rules="notEmpty"
-            />
-          </v-col>
-          <v-col cols="3">
-            <p class="rightp-style">
-              Days *
-            </p>
-            <v-text-field
-              v-model="newSubject.days"
-              color="red"
-              background-color="#E8EAF6"
-              class="right-style"
-              filled
+              label="Please Select Class"
               :rules="notEmpty"
             />
           </v-col>
         </v-row>
         <v-row>
-          <v-col cols="2">
-            <v-btn class="save-style" color="red" type="submit" @click="saveSubject">
-              Save
-            </v-btn>
-          </v-col>
-          <v-col cols="2">
-            <v-btn class="reset-style" color="#1A237E" @click="resetForm">
-              Reset
-            </v-btn>
-          </v-col>
+          <v-col cols="auto" />
+          <v-btn class="save-style" color="red" type="submit">
+            Save
+          </v-btn>
+          <v-col cols="auto" />
+          <v-btn class="reset-style" color="#1A237E" @click="resetForm">
+            Reset
+          </v-btn>
         </v-row>
       </v-form>
     </v-card>
@@ -74,37 +60,48 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
   data () {
     return {
       newSubject: {
-        name: '',
-        teacher: '',
-        classes: '',
-        days: ''
+        name: null,
+        teacher: null,
+        class: null
       },
       notEmpty: [
         v => !!v || 'The field could not be empty'
+      ],
+      itemsClass: [
+        'Cómputo en la Nube', 'Lenguajes Modernos', 'Aplicaciones en Internet', 'Other'
       ]
     }
   },
   methods: {
-    saveSubject () {
-      if (!this.newSubject.name || !this.newSubject.teacher) {
-        alert('Please fill out all required fields.')
-        return
-      }
-      alert('Subject saved successfully!')
-      this.resetForm()
-    },
     resetForm () {
       this.newSubject = {
-        name: '',
-        teacher: '',
-        classes: '',
-        days: ''
+        name: null,
+        teacher: null,
+        class: null
       }
-      this.$refs.form.reset()
+    },
+    async submitForm () {
+      const formData = new FormData()
+      formData.append('subject[name]', this.newSubject.name)
+      formData.append('subject[teacher]', this.newSubject.teacher)
+      formData.append('subject[class]', this.newSubject.class)
+
+      try {
+        const response = await axios.post('http://localhost:8181/api/subjects', formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          }
+        })
+        console.log('Subject added successfully:', response.data)
+      } catch (error) {
+        console.error('Error adding subject:', error)
+      }
     }
   }
 }
@@ -115,48 +112,36 @@ export default {
   padding-top: 30px;
   padding-bottom: 20px;
   font-size: 30px;
-  padding-left: 17px
-}
-
-.left-style {
-  padding-left: 17px
 }
 
 .leftp-style {
-  padding-left: 17px
+  padding-left: 51px;
+  padding-bottom: 10px;
+  font-size: 20px;
 }
 
-.right-style {
-  padding-right: 17px
-}
-
-.rightp-style {
-  padding-right: 17px
+.left-style {
+  padding-left: 51px;
+  padding-bottom: 10px;
 }
 
 .save-style {
   color: white;
   font-size: 12px;
-  width: 150px;
+  width: 130px;
   border: 2px solid #000;
   border-radius: 5px;
   margin-bottom: 20px;
-  margin-top: 5px;
-  margin-left: 17px;
+  margin-top: 20px;
 }
 
 .reset-style {
   color: white;
   font-size: 12px;
-  width: 150px;
+  width: 130px;
   border: 2px solid #000;
   border-radius: 5px;
   margin-bottom: 20px;
-  margin-top: 5px;
-}
-
-.firm-style {
-  color: #757575;
-  padding-top: 30px;
+  margin-top: 20px;
 }
 </style>
