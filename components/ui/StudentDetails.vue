@@ -36,7 +36,7 @@
             <v-col cols="4"><strong>Name:</strong></v-col>
             <v-col cols="8">{{ student.name }}</v-col>
             <v-col cols="4"><strong>Gender:</strong></v-col>
-            <v-col cols="8">{{ student.gender === 'M' ? 'Male' : 'Female' }}</v-col>
+            <v-col cols="8">{{ student.gender === 'Male' ? 'Male' : 'Female' }}</v-col>
             <v-col cols="4"><strong>Class:</strong></v-col>
             <v-col cols="8">{{ student.class }}</v-col>
             <v-col cols="4"><strong>Parents:</strong></v-col>

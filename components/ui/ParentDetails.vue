@@ -36,7 +36,7 @@
             <v-col cols="4"><strong>Name:</strong></v-col>
             <v-col cols="8">{{ parent.name }}</v-col>
             <v-col cols="4"><strong>Gender:</strong></v-col>
-            <v-col cols="8">{{ parent.gender === 'M' ? 'Male' : 'Female' }}</v-col>
+            <v-col cols="8">{{ parent.gender === 'Male' ? 'Male' : 'Female' }}</v-col>
             <v-col cols="4"><strong>Occupation:</strong></v-col>
             <v-col cols="8">{{ parent.occupation }}</v-col>
             <v-col cols="4"><strong>Address:</strong></v-col>

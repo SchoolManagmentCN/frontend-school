@@ -13,7 +13,7 @@
         <!-- Foto de perfil -->
         <div class="profile-container">
           <img
-            src="https://via.placeholder.com/150"
+            src="../../assets/img/quepedo.jpg"
             alt="Profile Picture"
             class="profile-picture"
           >

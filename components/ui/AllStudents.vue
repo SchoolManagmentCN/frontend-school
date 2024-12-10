@@ -48,7 +48,7 @@
         class="elevation-1"
       >
         <template #[`item.gender`]="{ item }">
-          {{ item.gender === 'M' ? 'Male' : 'Female' }}
+          {{ item.gender === 'Male' ? 'Male' : 'Female' }}
         </template>
       </v-data-table>
     </v-card>
