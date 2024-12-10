@@ -53,8 +53,13 @@
     </v-container>
   </v-app>
 </template>
-
 <script>
+import axios from 'axios'
+
+const API_URL = window.location.hostname === 'localhost'
+  ? 'http://localhost:8080'
+  : 'https://backendappsmcn-dwgwdpe6h2d2dmee.canadacentral-01.azurewebsites.net'
+
 export default {
   name: 'LoginLayout',
   layout: 'login',
@@ -70,11 +75,9 @@ export default {
       try {
         this.loading = true
         console.log('Attempting login with:', this.username, this.password)
-        const response = await this.$auth.loginWith('local', {
-          data: {
-            username: this.username,
-            password: this.password
-          }
+        const response = await axios.post(`${API_URL}/api/auth/login`, {
+          username: this.username,
+          password: this.password
         })
         console.log('Login successful:', response)
         this.$router.push('/dashboard/admin') // Redirect to dashboard on successful login

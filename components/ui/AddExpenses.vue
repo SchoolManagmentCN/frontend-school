@@ -116,6 +116,10 @@
 <script>
 import axios from 'axios'
 
+const API_URL = window.location.hostname === 'localhost'
+  ? 'http://localhost:8080'
+  : 'https://backendappsmcn-dwgwdpe6h2d2dmee.canadacentral-01.azurewebsites.net'
+
 export default {
   data () {
     return {
@@ -161,19 +165,10 @@ export default {
       }
     },
     async submitForm () {
-      const formData = new FormData()
-      formData.append('expense[name]', this.expenseData.name)
-      formData.append('expense[expenseType]', this.expenseData.expenseType)
-      formData.append('expense[status]', this.expenseData.status)
-      formData.append('expense[amount]', this.expenseData.amount)
-      formData.append('expense[phone]', this.expenseData.phone)
-      formData.append('expense[email]', this.expenseData.email)
-      formData.append('expense[dueDate]', this.expenseData.dueDate)
-
       try {
-        const response = await axios.post('http://localhost:8181/api/expenses', formData, {
+        const response = await axios.post(`${API_URL}/api/expenses`, this.expenseData, {
           headers: {
-            'Content-Type': 'multipart/form-data'
+            'Content-Type': 'application/json'
           }
         })
         console.log('Expense added successfully:', response.data)
@@ -184,7 +179,6 @@ export default {
   }
 }
 </script>
-
 <style scoped>
 .subrayado-rojo {
   color: black;

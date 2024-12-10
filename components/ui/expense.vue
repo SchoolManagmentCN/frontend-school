@@ -45,15 +45,15 @@
           />
         </v-col>
         <v-col cols="right">
-          <v-btn class="save-style" color="red" type="submit" @click="filterStudents">
+          <v-btn class="save-style" color="red" type="submit" @click="filterExpenses">
             Search
           </v-btn>
         </v-col>
       </v-row>
 
-      <!-- Tabla de estudiantes -->
+      <!-- Tabla de gastos -->
       <v-data-table
-        :items="filteredStudents"
+        :items="filteredExpenses"
         :headers="headers"
         dense
         item-key="id"
@@ -70,46 +70,57 @@
 </template>
 
 <script>
+import axios from 'axios'
+
+const API_URL = window.location.hostname === 'localhost'
+  ? 'http://localhost:8080'
+  : 'https://backendappsmcn-dwgwdpe6h2d2dmee.canadacentral-01.azurewebsites.net'
+
 export default {
-  name: 'StudentFees',
+  // eslint-disable-next-line vue/multi-word-component-names
+  name: 'Expense',
   layout: 'navegation',
   data () {
     return {
       searchQuery: '',
       selectedClass: '',
-      students: [
-        // { id: 1, name: 'John Doe', gender: 'M', class: 'A', parents: 'Mr & Mrs Doe', address: '123 Elm St', dob: '2005-06-14', phone: '123-456-7890' },
-        // { id: 2, name: 'Jane Smith', gender: 'F', class: 'B', parents: 'Mr & Mrs Smith', address: '456 Oak St', dob: '2006-08-24', phone: '234-567-8901' },
-        // { id: 3, name: 'Alice Brown', gender: 'F', class: 'A', parents: 'Mr & Mrs Brown', address: '789 Pine St', dob: '2007-02-17', phone: '345-678-9012' },
-        // { id: 4, name: 'Bob Johnson', gender: 'M', class: 'C', parents: 'Mr & Mrs Johnson', address: '101 Maple St', dob: '2004-12-30', phone: '456-789-0123' }
-      ],
+      expenses: [],
       classes: ['A', 'B', 'C'],
       headers: [
         { text: 'ID', value: 'id' },
         { text: 'Name', value: 'name' },
-        { text: 'Gender', value: 'gender' },
-        { text: 'Class', value: 'class' },
-        { text: 'Parents', value: 'parents' },
-        { text: 'Address', value: 'address' },
-        { text: 'Date of Birth', value: 'dob' },
-        { text: 'Phone', value: 'phone' }
+        { text: 'Expense Type', value: 'expenseType' },
+        { text: 'Status', value: 'status' },
+        { text: 'Amount', value: 'amount' },
+        { text: 'Phone', value: 'phone' },
+        { text: 'Email', value: 'email' },
+        { text: 'Due Date', value: 'dueDate' }
       ]
     }
   },
   computed: {
-    filteredStudents () {
-      return this.students.filter((student) => {
-        const matchesName = student.name.toLowerCase().includes(this.searchQuery.toLowerCase())
-        const matchesClass = this.selectedClass ? student.class === this.selectedClass : true
+    filteredExpenses () {
+      return this.expenses.filter((expense) => {
+        const matchesName = expense.name ? expense.name.toLowerCase().includes(this.searchQuery.toLowerCase()) : false
+        const matchesClass = this.selectedClass ? expense.expenseType === this.selectedClass : true
         return matchesName && matchesClass
       })
     }
   },
+  created () {
+    this.fetchExpenses()
+  },
   methods: {
-    filterStudents () {
+    async fetchExpenses () {
+      try {
+        const response = await axios.get(`${API_URL}/api/expenses`)
+        this.expenses = response.data
+      } catch (error) {
+        console.error('Error fetching expenses:', error)
+      }
     },
-    goToDetails (studentId) {
-      this.$router.push({ path: `/studentDetail/${studentId}` })
+    filterExpenses () {
+      // This method is already handled by the computed property `filteredExpenses`
     }
   }
 }
@@ -139,5 +150,4 @@ export default {
   margin-right: 55px;
   margin-bottom: 25px;
 }
-
 </style>

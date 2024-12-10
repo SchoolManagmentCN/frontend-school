@@ -71,6 +71,10 @@
 <script>
 import axios from 'axios'
 
+const API_URL = window.location.hostname === 'localhost'
+  ? 'http://localhost:8080'
+  : 'https://backendappsmcn-dwgwdpe6h2d2dmee.canadacentral-01.azurewebsites.net'
+
 export default {
   data () {
     return {
@@ -87,7 +91,7 @@ export default {
   methods: {
     async fetchTeachers () {
       try {
-        const response = await axios.get('http://localhost:8080/api/teachers/')
+        const response = await axios.get(`${API_URL}/api/teachers/`)
         this.teachers = response.data
         this.filteredTeachers = this.teachers
         console.log('Teachers fetched:', this.teachers)

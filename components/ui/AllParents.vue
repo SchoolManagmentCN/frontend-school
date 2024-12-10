@@ -75,6 +75,10 @@
 <script>
 import axios from 'axios'
 
+const API_URL = window.location.hostname === 'localhost'
+  ? 'http://localhost:8080'
+  : 'https://backendappsmcn-dwgwdpe6h2d2dmee.canadacentral-01.azurewebsites.net'
+
 export default {
   data () {
     return {
@@ -91,7 +95,7 @@ export default {
   methods: {
     async fetchParents () {
       try {
-        const response = await axios.get('http://localhost:8080/api/parents/')
+        const response = await axios.get(`${API_URL}/api/parents/`)
         this.parents = response.data
         this.filteredParents = this.parents
       } catch (error) {

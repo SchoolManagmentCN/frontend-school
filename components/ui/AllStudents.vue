@@ -7,12 +7,10 @@
       Home<span style="color: red;"> > All Students</span>
     </p>
     <v-card class="pa-4">
-      <!-- Título de la tabla -->
       <h3 class="h3-style">
         All Students Data
       </h3>
 
-      <!-- Filtros de búsqueda -->
       <v-row align="center">
         <v-col cols="4">
           <v-text-field
@@ -42,15 +40,14 @@
         </v-col>
       </v-row>
 
-      <!-- Tabla de estudiantes -->
       <v-data-table
         :items="filteredStudents"
         :headers="headers"
         dense
         item-key="id"
         class="elevation-1"
+        @click:row="goToStudentDetails"
       >
-        <!-- Personalización de la columna de género -->
         <template #[`item.gender`]="{ item }">
           {{ item.gender === 'M' ? 'Male' : 'Female' }}
         </template>
@@ -62,6 +59,10 @@
 
 <script>
 import axios from 'axios'
+
+const API_URL = window.location.hostname === 'localhost'
+  ? 'http://localhost:8080'
+  : 'https://backendappsmcn-dwgwdpe6h2d2dmee.canadacentral-01.azurewebsites.net'
 
 export default {
   data () {
@@ -88,18 +89,23 @@ export default {
   methods: {
     async fetchStudents () {
       try {
-        const response = await axios.get('http://localhost:8080/api/students/')
-        this.students = response.data
+        const response = await axios.get(`${API_URL}/api/students/`)
+        this.students = response.data.map(student => ({
+          id: student.id,
+          name: student.name,
+          gender: student.gender,
+          class: student.classes,
+          parents: `${student.fatherName}, ${student.motherName}`,
+          address: student.address || 'N/A',
+          dob: student.dateOfBirth,
+          phone: student.phone || 'N/A'
+        }))
       } catch (error) {
         console.error('Error fetching students:', error)
       }
     },
-    filterStudents () {
-      this.filteredStudents = this.students.filter((student) => {
-        const matchesName = student.name ? student.name.toLowerCase().includes(this.searchQuery.toLowerCase()) : false
-        const matchesClass = this.selectedClass ? student.class === this.selectedClass : true
-        return matchesName && matchesClass
-      })
+    goToStudentDetails (student) {
+      this.$router.push({ name: 'student-details', params: { id: student.id } })
     }
   },
   computed: {

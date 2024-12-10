@@ -62,6 +62,10 @@
 <script>
 import axios from 'axios'
 
+const API_URL = window.location.hostname === 'localhost'
+  ? 'http://localhost:8080'
+  : 'https://backendappsmcn-dwgwdpe6h2d2dmee.canadacentral-01.azurewebsites.net'
+
 export default {
   data () {
     return {
@@ -93,7 +97,7 @@ export default {
       formData.append('subject[class]', this.newSubject.class)
 
       try {
-        const response = await axios.post('http://localhost:8080/api/subjects', formData, {
+        const response = await axios.post(`${API_URL}/api/subjects`, formData, {
           headers: {
             'Content-Type': 'multipart/form-data'
           }
