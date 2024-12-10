@@ -42,7 +42,8 @@
           <thead>
             <tr>
               <th>ID</th>
-              <th>Name</th>
+              <th>First Name</th>
+              <th>Last Name</th>
               <th>Gender</th>
               <th>Occupation</th>
               <th>Address</th>
@@ -53,8 +54,9 @@
           <tbody>
             <tr v-for="teacher in filteredTeachers" :key="teacher.id">
               <td>{{ teacher.id }}</td>
-              <td>{{ teacher.name }}</td>
-              <td>{{ teacher.gender === 'M' ? 'Male' : 'Female' }}</td>
+              <td>{{ teacher.firstName }}</td>
+              <td>{{ teacher.lastName }}</td>
+              <td>{{ teacher.gender }}</td>
               <td>{{ teacher.occupation }}</td>
               <td>{{ teacher.address }}</td>
               <td>{{ teacher.email }}</td>
@@ -79,10 +81,10 @@ export default {
   data () {
     return {
       searchQuery: '',
-      selectedOccupation: null,
-      occupations: ['Doctor', 'Engineer', 'Teacher', 'Business Owner', 'Other'],
+      selectedOccupation: '',
       teachers: [],
-      filteredTeachers: []
+      filteredTeachers: [],
+      occupations: ['Teacher', 'Assistant', 'Principal']
     }
   },
   created () {
@@ -92,19 +94,25 @@ export default {
     async fetchTeachers () {
       try {
         const response = await axios.get(`${API_URL}/api/teachers/`)
-        this.teachers = response.data
+        this.teachers = response.data.map(teacher => ({
+          id: teacher.id,
+          firstName: teacher.firstName,
+          lastName: teacher.lastName,
+          gender: teacher.gender,
+          occupation: teacher.occupation,
+          address: teacher.address || 'N/A',
+          email: teacher.email,
+          phone: teacher.phone || 'N/A'
+        }))
         this.filteredTeachers = this.teachers
-        console.log('Teachers fetched:', this.teachers)
       } catch (error) {
         console.error('Error fetching teachers:', error)
       }
     },
     filterTeachers () {
       this.filteredTeachers = this.teachers.filter((teacher) => {
-        const matchesName = teacher.name.toLowerCase().includes(this.searchQuery.toLowerCase())
-        const matchesOccupation = this.selectedOccupation
-          ? teacher.occupation === this.selectedOccupation
-          : true
+        const matchesName = teacher.firstName.toLowerCase().includes(this.searchQuery.toLowerCase()) || teacher.lastName.toLowerCase().includes(this.searchQuery.toLowerCase())
+        const matchesOccupation = this.selectedOccupation ? teacher.occupation === this.selectedOccupation : true
         return matchesName && matchesOccupation
       })
     }

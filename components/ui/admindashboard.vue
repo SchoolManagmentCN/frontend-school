@@ -25,7 +25,7 @@
               <v-col>
                 <div class="d-flex flex-column">
                   <span>Students</span>
-                  <h3>50000</h3>
+                  <h3>{{ studentCount }}</h3>
                 </div>
               </v-col>
             </v-row>
@@ -44,7 +44,7 @@
               <v-col>
                 <div class="d-flex flex-column">
                   <span>Teachers</span>
-                  <h3>1500</h3>
+                  <h3>{{ teacherCount }}</h3>
                 </div>
               </v-col>
             </v-row>
@@ -63,7 +63,7 @@
               <v-col>
                 <div class="d-flex flex-column">
                   <span>Parents</span>
-                  <h3>60000</h3>
+                  <h3>{{ parentCount }}</h3>
                 </div>
               </v-col>
             </v-row>
@@ -82,7 +82,7 @@
               <v-col>
                 <div class="d-flex flex-column">
                   <span>Earnings</span>
-                  <h3>$200000</h3>
+                  <h3>{{ earnings }}</h3>
                 </div>
               </v-col>
             </v-row>
@@ -183,9 +183,65 @@
 </template>
 
 <script>
+import axios from 'axios'
+
+const API_URL = window.location.hostname === 'localhost'
+  ? 'http://localhost:8080'
+  : 'https://backendappsmcn-dwgwdpe6h2d2dmee.canadacentral-01.azurewebsites.net'
+
 export default {
   name: 'AdminDashboard',
-  layout: 'navegation'
+  layout: 'navegation',
+  data () {
+    return {
+      studentCount: 0,
+      teacherCount: 0,
+      parentCount: 0,
+      earnings: 0
+    }
+  },
+  created () {
+    this.fetchStudentCount()
+    this.fetchTeacherCount()
+    this.fetchParentCount()
+    this.fetchEarnings()
+  },
+  methods: {
+    async fetchStudentCount () {
+      try {
+        const response = await axios.get(`${API_URL}/api/students/`)
+        this.studentCount = response.data.length
+      } catch (error) {
+        console.error('Error fetching student count:', error)
+      }
+    },
+    async fetchTeacherCount () {
+      try {
+        const response = await axios.get(`${API_URL}/api/teachers/`)
+        this.teacherCount = response.data.length
+      } catch (error) {
+        console.error('Error fetching teacher count:', error)
+      }
+    },
+    async fetchParentCount () {
+      try {
+        const response = await axios.get(`${API_URL}/api/parents/`)
+        this.parentCount = response.data.length
+      } catch (error) {
+        console.error('Error fetching parent count:', error)
+      }
+    },
+    async fetchEarnings () {
+      try {
+        const response = await axios.get(`${API_URL}/api/expenses/`)
+        this.earnings = response.data
+          .filter(expense => expense.status === 'Payed')
+          .reduce((total, expense) => total + expense.amount, 0)
+      } catch (error) {
+        console.error('Error fetching earnings:', error)
+      }
+    }
+  }
 }
 </script>
 
@@ -215,5 +271,4 @@ export default {
   padding-bottom: 10px;
   font-size: 30px;
 }
-
 </style>

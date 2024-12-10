@@ -91,15 +91,10 @@ export default {
       }
     },
     async submitForm () {
-      const formData = new FormData()
-      formData.append('subject[name]', this.newSubject.name)
-      formData.append('subject[teacher]', this.newSubject.teacher)
-      formData.append('subject[class]', this.newSubject.class)
-
       try {
-        const response = await axios.post(`${API_URL}/api/subjects`, formData, {
+        const response = await axios.post(`${API_URL}/api/subjects`, this.newSubject, {
           headers: {
-            'Content-Type': 'multipart/form-data'
+            'Content-Type': 'application/json'
           }
         })
         console.log('Subject added successfully:', response.data)

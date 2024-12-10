@@ -80,6 +80,16 @@
                 </v-list-item-title>
               </v-list-item>
             </nuxt-link>
+            <nuxt-link to="/dashboard/studentDetail" exact style="text-decoration: none;">
+              <v-list-item>
+                <v-icon style="color: white;" class="mr-3">
+                  mdi-account-search
+                </v-icon>
+                <p class="mb-0" style="color: white;">
+                  Find Student
+                </p>
+              </v-list-item>
+            </nuxt-link>
           </v-list-item-group>
         </v-list-group>
         <v-divider
@@ -100,6 +110,18 @@
               Parents
             </p>
           </v-list-item>
+          <v-list-item-group style="background-color: #14238A;">
+            <nuxt-link to="/dashboard/parentDetail" exact style="text-decoration: none;">
+              <v-list-item>
+                <v-icon style="color: white;" class="mr-3">
+                  mdi-account-search
+                </v-icon>
+                <p class="mb-0" style="color: white;">
+                  Find Parent
+                </p>
+              </v-list-item>
+            </nuxt-link>
+          </v-list-item-group>
         </nuxt-link>
         <v-divider
           class="my-3"
@@ -144,6 +166,16 @@
                 <v-list-item-title style="color: #BDBDBD;">
                   > Add Teachers
                 </v-list-item-title>
+              </v-list-item>
+            </nuxt-link>
+            <nuxt-link to="/dashboard/teacherDetail" exact style="text-decoration: none;">
+              <v-list-item>
+                <v-icon style="color: white;" class="mr-3">
+                  mdi-account-search
+                </v-icon>
+                <p class="mb-0" style="color: white;">
+                  Find Teacher
+                </p>
               </v-list-item>
             </nuxt-link>
           </v-list-item-group>

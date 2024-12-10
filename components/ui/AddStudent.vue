@@ -25,6 +25,17 @@
               />
             </v-col>
             <v-col cols="3">
+              <p>Email</p>
+              <v-text-field
+                v-model="parentData.email"
+                color="red"
+                background-color="#E8EAF6"
+                type="email"
+                filled
+                :rules="correo"
+              />
+            </v-col>
+            <v-col cols="3">
               <p>Gender *</p>
               <v-select
                 v-model="studentData.gender"

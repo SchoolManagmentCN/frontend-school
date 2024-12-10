@@ -1,10 +1,10 @@
 <template>
   <v-container>
     <v-card class="pa-4">
-      <v-form @submit.prevent="fetchStudentDetails">
+      <v-form @submit.prevent="fetchParentDetails">
         <v-text-field
-          v-model="studentId"
-          label="Enter Student ID"
+          v-model="parentId"
+          label="Enter Parent ID"
           type="text"
           required
         />
@@ -13,40 +13,38 @@
         </v-btn>
       </v-form>
       <v-divider class="my-4" />
-      <v-row v-if="student">
+      <v-row v-if="parent">
         <v-col cols="4">
           <v-img
-            :src="student.image || ''"
-            alt="Student Image"
+            :src="parent.profileImageUrl || ''"
+            alt="Parent Image"
             contain
-            class="student-image"
+            class="parent-image"
             height="200px"
           />
         </v-col>
         <v-col cols="8">
           <div class="text-h5 font-weight-bold">
-            {{ student.name }}
+            {{ parent.name }}
           </div>
           <p class="mb-4">
-            {{ student.description || 'No description available.' }}
+            {{ parent.description || 'No description available.' }}
           </p>
           <v-row>
             <v-col cols="4"><strong>ID:</strong></v-col>
-            <v-col cols="8">{{ student.id }}</v-col>
+            <v-col cols="8">{{ parent.id }}</v-col>
             <v-col cols="4"><strong>Name:</strong></v-col>
-            <v-col cols="8">{{ student.name }}</v-col>
+            <v-col cols="8">{{ parent.name }}</v-col>
             <v-col cols="4"><strong>Gender:</strong></v-col>
-            <v-col cols="8">{{ student.gender === 'M' ? 'Male' : 'Female' }}</v-col>
-            <v-col cols="4"><strong>Class:</strong></v-col>
-            <v-col cols="8">{{ student.class }}</v-col>
-            <v-col cols="4"><strong>Parents:</strong></v-col>
-            <v-col cols="8">{{ student.parents }}</v-col>
+            <v-col cols="8">{{ parent.gender === 'M' ? 'Male' : 'Female' }}</v-col>
+            <v-col cols="4"><strong>Occupation:</strong></v-col>
+            <v-col cols="8">{{ parent.occupation }}</v-col>
             <v-col cols="4"><strong>Address:</strong></v-col>
-            <v-col cols="8">{{ student.address }}</v-col>
-            <v-col cols="4"><strong>Date of Birth:</strong></v-col>
-            <v-col cols="8">{{ student.dob }}</v-col>
+            <v-col cols="8">{{ parent.address }}</v-col>
+            <v-col cols="4"><strong>Email:</strong></v-col>
+            <v-col cols="8">{{ parent.email }}</v-col>
             <v-col cols="4"><strong>Phone:</strong></v-col>
-            <v-col cols="8">{{ student.phone }}</v-col>
+            <v-col cols="8">{{ parent.phone }}</v-col>
           </v-row>
         </v-col>
       </v-row>
@@ -64,17 +62,18 @@ const API_URL = window.location.hostname === 'localhost'
 export default {
   data () {
     return {
-      studentId: null,
-      student: null
+      parentId: null,
+      parent: null
     }
   },
   methods: {
-    async fetchStudentDetails () {
+    async fetchParentDetails () {
       try {
-        const response = await axios.get(`${API_URL}/api/students/${this.studentId}`)
-        this.student = response.data
+        const response = await axios.get(`${API_URL}/api/parents/${this.parentId}`)
+        this.parent = response.data
+        console.log('Parent details:', this.parent)
       } catch (error) {
-        console.error('Error fetching student details:', error)
+        console.error('Error fetching parent details:', error)
       }
     }
   }
@@ -82,7 +81,7 @@ export default {
 </script>
 
 <style scoped>
-.student-image {
+.parent-image {
   border-radius: 8px;
   background-color: #f0f0f0;
 }

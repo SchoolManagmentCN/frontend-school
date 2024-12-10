@@ -1,18 +1,13 @@
 <template>
-  <ParentsDetails :student-id="selectedStudentId" />
+  <ParentDetails />
 </template>
 
 <script>
-import ParentsDetails from '~/components/ui/ParentsDetails.vue'
+import ParentDetails from '~/components/ui/ParentDetails.vue'
 
 export default {
   components: {
-    ParentsDetails
-  },
-  data () {
-    return {
-      selectedStudentId: 1 // Cambia esto para mostrar un estudiante diferente
-    }
+    ParentDetails
   }
 }
 </script>

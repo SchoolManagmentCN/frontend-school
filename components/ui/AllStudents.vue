@@ -46,7 +46,6 @@
         dense
         item-key="id"
         class="elevation-1"
-        @click:row="goToStudentDetails"
       >
         <template #[`item.gender`]="{ item }">
           {{ item.gender === 'M' ? 'Male' : 'Female' }}
@@ -98,14 +97,14 @@ export default {
           parents: `${student.fatherName}, ${student.motherName}`,
           address: student.address || 'N/A',
           dob: student.dateOfBirth,
-          phone: student.phone || 'N/A'
+          email: student.email || 'N/A'
         }))
       } catch (error) {
         console.error('Error fetching students:', error)
       }
     },
-    goToStudentDetails (student) {
-      this.$router.push({ name: 'student-details', params: { id: student.id } })
+    filterStudents () {
+      // This method is already handled by the computed property `filteredStudents`
     }
   },
   computed: {
