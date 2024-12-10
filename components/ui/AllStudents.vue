@@ -36,7 +36,7 @@
           />
         </v-col>
         <v-col cols="right">
-          <v-btn class="save-style" color="red" type="submit">
+          <v-btn class="save-style" color="red" type="submit" @click="filterStudents">
             Search
           </v-btn>
         </v-col>
@@ -61,17 +61,14 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
   data () {
     return {
       searchQuery: '',
       selectedClass: '',
-      students: [
-        { id: 1, name: 'John Doe', gender: 'M', class: 'A', parents: 'Mr & Mrs Doe', address: '123 Elm St', dob: '2005-06-14', phone: '123-456-7890' },
-        { id: 2, name: 'Jane Smith', gender: 'F', class: 'B', parents: 'Mr & Mrs Smith', address: '456 Oak St', dob: '2006-08-24', phone: '234-567-8901' },
-        { id: 3, name: 'Alice Brown', gender: 'F', class: 'A', parents: 'Mr & Mrs Brown', address: '789 Pine St', dob: '2007-02-17', phone: '345-678-9012' },
-        { id: 4, name: 'Bob Johnson', gender: 'M', class: 'C', parents: 'Mr & Mrs Johnson', address: '101 Maple St', dob: '2004-12-30', phone: '456-789-0123' }
-      ],
+      students: [],
       classes: ['A', 'B', 'C'],
       headers: [
         { text: 'ID', value: 'id' },
@@ -85,10 +82,30 @@ export default {
       ]
     }
   },
+  created () {
+    this.fetchStudents()
+  },
+  methods: {
+    async fetchStudents () {
+      try {
+        const response = await axios.get('http://localhost:8181/api/students/')
+        this.students = response.data
+      } catch (error) {
+        console.error('Error fetching students:', error)
+      }
+    },
+    filterStudents () {
+      this.filteredStudents = this.students.filter((student) => {
+        const matchesName = student.name ? student.name.toLowerCase().includes(this.searchQuery.toLowerCase()) : false
+        const matchesClass = this.selectedClass ? student.class === this.selectedClass : true
+        return matchesName && matchesClass
+      })
+    }
+  },
   computed: {
     filteredStudents () {
       return this.students.filter((student) => {
-        const matchesName = student.name.toLowerCase().includes(this.searchQuery.toLowerCase())
+        const matchesName = student.name ? student.name.toLowerCase().includes(this.searchQuery.toLowerCase()) : false
         const matchesClass = this.selectedClass ? student.class === this.selectedClass : true
         return matchesName && matchesClass
       })

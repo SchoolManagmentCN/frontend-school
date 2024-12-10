@@ -15,60 +15,51 @@
           <v-col cols="4" class="d-flex">
             <v-text-field
               v-model="searchQuery"
-              label="Search by name"
               color="#14238A"
+              label="Search by name..."
               background-color="#DDDEEE80"
               filled
             />
           </v-col>
-
-          <!-- Selector de asignatura -->
           <v-col cols="4">
             <v-select
-              v-model="selectedSubject"
-              :items="subjects"
-              label="Select subject"
+              v-model="selectedOccupation"
+              :items="occupations"
+              label="Select Occupation"
               color="#14238A"
               background-color="#DDDEEE80"
               filled
             />
           </v-col>
-
-          <!-- Botón de búsqueda -->
-          <v-col cols="right">
-            <v-btn class="save-style" color="red" @click="filterTeachers">
-              Search
-            </v-btn>
-          </v-col>
+          <v-col cols="right" />
+          <v-btn class="save-style" color="red" type="submit" @click="filterTeachers">
+            Search
+          </v-btn>
         </v-row>
       </v-card-title>
-
       <v-card-text>
-        <!-- Tabla -->
         <v-simple-table>
           <thead>
-            <tr>
-              <th>ID</th>
-              <th>Name</th>
-              <th>Gender</th>
-              <th>Class</th>
-              <th>Subject</th>
-              <th>Address</th>
-              <th>Date of Birth</th>
-              <th>Phone</th>
-            </tr>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Gender</th>
+            <th>Occupation</th>
+            <th>Address</th>
+            <th>Email</th>
+            <th>Phone</th>
+          </tr>
           </thead>
           <tbody>
-            <tr v-for="teacher in filteredTeachers" :key="teacher.id">
-              <td>{{ teacher.id }}</td>
-              <td>{{ teacher.name }}</td>
-              <td>{{ teacher.gender === 'M' ? 'Male' : 'Female' }}</td>
-              <td>{{ teacher.class }}</td>
-              <td>{{ teacher.subject }}</td>
-              <td>{{ teacher.address }}</td>
-              <td>{{ teacher.dateOfBirth }}</td>
-              <td>{{ teacher.phone }}</td>
-            </tr>
+          <tr v-for="teacher in filteredTeachers" :key="teacher.id">
+            <td>{{ teacher.id }}</td>
+            <td>{{ teacher.name }}</td>
+            <td>{{ teacher.gender === 'M' ? 'Male' : 'Female' }}</td>
+            <td>{{ teacher.occupation }}</td>
+            <td>{{ teacher.address }}</td>
+            <td>{{ teacher.email }}</td>
+            <td>{{ teacher.phone }}</td>
+          </tr>
           </tbody>
         </v-simple-table>
       </v-card-text>
@@ -78,68 +69,39 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
   data () {
     return {
       searchQuery: '',
-      selectedSubject: null,
-      subjects: ['Math', 'Science', 'English', 'History', 'Physical Education'],
-      teachers: [
-        {
-          id: 1,
-          name: 'Mr. John Doe',
-          gender: 'M',
-          class: '10-A',
-          subject: 'Math',
-          address: '123 Elm St',
-          dateOfBirth: '1980-05-12',
-          phone: '123-456-7890'
-        },
-        {
-          id: 2,
-          name: 'Ms. Jane Smith',
-          gender: 'F',
-          class: '9-B',
-          subject: 'English',
-          address: '456 Oak St',
-          dateOfBirth: '1985-08-20',
-          phone: '234-567-8901'
-        },
-        {
-          id: 3,
-          name: 'Dr. Alice Brown',
-          gender: 'F',
-          class: '12-C',
-          subject: 'Science',
-          address: '789 Pine St',
-          dateOfBirth: '1978-11-05',
-          phone: '345-678-9012'
-        },
-        {
-          id: 4,
-          name: 'Mr. Bob Johnson',
-          gender: 'M',
-          class: '11-D',
-          subject: 'History',
-          address: '101 Maple St',
-          dateOfBirth: '1975-02-18',
-          phone: '456-789-0123'
-        }
-      ],
+      selectedOccupation: null,
+      occupations: ['Doctor', 'Engineer', 'Teacher', 'Business Owner', 'Other'],
+      teachers: [],
       filteredTeachers: []
     }
   },
   created () {
-    this.filteredTeachers = this.teachers
+    this.fetchTeachers()
   },
   methods: {
+    async fetchTeachers () {
+      try {
+        const response = await axios.get('http://localhost:8181/api/teachers/')
+        this.teachers = response.data
+        this.filteredTeachers = this.teachers
+        console.log('Teachers fetched:', this.teachers)
+      } catch (error) {
+        console.error('Error fetching teachers:', error)
+      }
+    },
     filterTeachers () {
       this.filteredTeachers = this.teachers.filter((teacher) => {
         const matchesName = teacher.name.toLowerCase().includes(this.searchQuery.toLowerCase())
-        const matchesSubject = this.selectedSubject
-          ? teacher.subject === this.selectedSubject
+        const matchesOccupation = this.selectedOccupation
+          ? teacher.occupation === this.selectedOccupation
           : true
-        return matchesName && matchesSubject
+        return matchesName && matchesOccupation
       })
     }
   }
@@ -169,7 +131,7 @@ export default {
   width: 200px;
   border: 2px solid #000;
   border-radius: 5px;
-  margin-right: 10px;
+  margin-right: 55px;
   margin-bottom: 25px;
 }
 

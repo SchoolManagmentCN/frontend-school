@@ -34,7 +34,7 @@
             />
           </v-col>
           <v-col cols="right" />
-          <v-btn class="save-style" color="red" type="submit">
+          <v-btn class="save-style" color="red" type="submit" @click="filterParents">
             Search
           </v-btn>
         </v-row>
@@ -73,25 +73,31 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
   data () {
     return {
       searchQuery: '',
       selectedOccupation: null,
       occupations: ['Doctor', 'Engineer', 'Teacher', 'Business Owner', 'Other'],
-      parents: [
-        { id: 1, name: 'John Doe', gender: 'M', occupation: 'Engineer', address: '123 Elm St', email: 'john.doe@mail.com', phone: '123-456-7890' },
-        { id: 2, name: 'Jane Smith', gender: 'F', occupation: 'Teacher', address: '456 Oak St', email: 'jane.smith@mail.com', phone: '234-567-8901' },
-        { id: 3, name: 'Alice Brown', gender: 'F', occupation: 'Doctor', address: '789 Pine St', email: 'alice.brown@mail.com', phone: '345-678-9012' },
-        { id: 4, name: 'Bob Johnson', gender: 'M', occupation: 'Business Owner', address: '101 Maple St', email: 'bob.johnson@mail.com', phone: '456-789-0123' }
-      ],
+      parents: [],
       filteredParents: []
     }
   },
   created () {
-    this.filteredParents = this.parents
+    this.fetchParents()
   },
   methods: {
+    async fetchParents () {
+      try {
+        const response = await axios.get('http://localhost:8181/api/parents/')
+        this.parents = response.data
+        this.filteredParents = this.parents
+      } catch (error) {
+        console.error('Error fetching parents:', error)
+      }
+    },
     filterParents () {
       this.filteredParents = this.parents.filter((parent) => {
         const matchesName = parent.name.toLowerCase().includes(this.searchQuery.toLowerCase())
