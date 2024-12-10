@@ -93,7 +93,7 @@ export default {
       formData.append('subject[class]', this.newSubject.class)
 
       try {
-        const response = await axios.post('http://localhost:8181/api/subjects', formData, {
+        const response = await axios.post('http://localhost:8080/api/subjects', formData, {
           headers: {
             'Content-Type': 'multipart/form-data'
           }

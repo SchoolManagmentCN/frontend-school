@@ -91,7 +91,7 @@ export default {
   methods: {
     async fetchParents () {
       try {
-        const response = await axios.get('http://localhost:8181/api/parents/')
+        const response = await axios.get('http://localhost:8080/api/parents/')
         this.parents = response.data
         this.filteredParents = this.parents
       } catch (error) {

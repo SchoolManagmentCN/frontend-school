@@ -40,26 +40,26 @@
       <v-card-text>
         <v-simple-table>
           <thead>
-          <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Gender</th>
-            <th>Occupation</th>
-            <th>Address</th>
-            <th>Email</th>
-            <th>Phone</th>
-          </tr>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Gender</th>
+              <th>Occupation</th>
+              <th>Address</th>
+              <th>Email</th>
+              <th>Phone</th>
+            </tr>
           </thead>
           <tbody>
-          <tr v-for="teacher in filteredTeachers" :key="teacher.id">
-            <td>{{ teacher.id }}</td>
-            <td>{{ teacher.name }}</td>
-            <td>{{ teacher.gender === 'M' ? 'Male' : 'Female' }}</td>
-            <td>{{ teacher.occupation }}</td>
-            <td>{{ teacher.address }}</td>
-            <td>{{ teacher.email }}</td>
-            <td>{{ teacher.phone }}</td>
-          </tr>
+            <tr v-for="teacher in filteredTeachers" :key="teacher.id">
+              <td>{{ teacher.id }}</td>
+              <td>{{ teacher.name }}</td>
+              <td>{{ teacher.gender === 'M' ? 'Male' : 'Female' }}</td>
+              <td>{{ teacher.occupation }}</td>
+              <td>{{ teacher.address }}</td>
+              <td>{{ teacher.email }}</td>
+              <td>{{ teacher.phone }}</td>
+            </tr>
           </tbody>
         </v-simple-table>
       </v-card-text>
@@ -87,7 +87,7 @@ export default {
   methods: {
     async fetchTeachers () {
       try {
-        const response = await axios.get('http://localhost:8181/api/teachers/')
+        const response = await axios.get('http://localhost:8080/api/teachers/')
         this.teachers = response.data
         this.filteredTeachers = this.teachers
         console.log('Teachers fetched:', this.teachers)

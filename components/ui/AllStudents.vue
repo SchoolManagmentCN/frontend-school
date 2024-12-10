@@ -88,7 +88,7 @@ export default {
   methods: {
     async fetchStudents () {
       try {
-        const response = await axios.get('http://localhost:8181/api/students/')
+        const response = await axios.get('http://localhost:8080/api/students/')
         this.students = response.data
       } catch (error) {
         console.error('Error fetching students:', error)

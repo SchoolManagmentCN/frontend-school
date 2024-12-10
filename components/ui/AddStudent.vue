@@ -377,7 +377,7 @@ export default {
       formData.append('parentImage', this.parentImage)
 
       try {
-        const response = await axios.post('http://localhost:8181/api/students', formData, {
+        const response = await axios.post('http://localhost:8080/api/students', formData, {
           headers: {
             'Content-Type': 'multipart/form-data'
           }
